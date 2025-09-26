@@ -54,7 +54,6 @@
 
   /* ===== HERO ===== */
   .hero.card{padding:18px; text-align:center}
-
   /* Title stays ALWAYS English per request */
   .title-3d{
     margin:2px 0 4px;
@@ -65,7 +64,6 @@
   }
   @keyframes glowTitle{from{text-shadow:0 0 6px #7873f5,0 0 12px #ff6ec4}to{text-shadow:0 0 14px #ff6ec4,0 0 24px #7873f5}}
   @keyframes pop{0%{transform:translateY(6px) scale(.98);opacity:0}100%{transform:translateY(0) scale(1);opacity:1}}
-
   @media (max-width:720px){ .title-3d{font-size:34px} }
   @media (max-width:520px){ .title-3d{font-size:28px} }
 
@@ -96,24 +94,22 @@
   @keyframes flip{0%{transform:rotateX(0)}50%{transform:rotateX(-60deg)}100%{transform:rotateX(0)}}
   @media (max-width:520px){ .tile{height:78px} .num{font-size:26px} }
 
-  /* ===== TOP 3 Podium ===== */
+  /* ===== TOP 3 ===== */
   .podium{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:end;margin:16px 0 6px}
-  .pod{
-    position:relative;border-radius:16px;text-align:center;padding:16px 10px 24px;
+  .pod{position:relative;border-radius:16px;text-align:center;padding:16px 10px 24px;
     background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.03));
-    border:2px solid rgba(255,255,255,.24); box-shadow:0 14px 28px rgba(0,0,0,.38); overflow:visible;
-  }
+    border:2px solid rgba(255,255,255,.24); box-shadow:0 14px 28px rgba(0,0,0,.38)}
   .pod--1{transform:translateY(-8px);background:linear-gradient(180deg,#3a2f6b,#211e46)}
-  .pod-rank{position:absolute; top:-14px; left:50%; transform:translateX(-50%); display:inline-flex; align-items:center; gap:4px; padding:4px 10px; border-radius:999px; font-weight:900; font-size:13px; border:2px solid rgba(255,255,255,.35); background:rgba(255,255,255,.95); color:#1b1b38; box-shadow:0 3px 6px rgba(0,0,0,.35)}
+  .pod-rank{position:absolute; top:-14px; left:50%; transform:translateX(-50%); display:inline-flex; align-items:center; gap:4px; padding:4px 10px; border-radius:999px; font-weight:900; font-size:13px; border:2px solid rgba(255,255,255,.35); background:rgba(255,255,255,.95); color:#1b1b38}
   .pod-rank.t1{background:linear-gradient(135deg,#fff6b5,#ffd84a)}
   .pod-rank.t2{background:linear-gradient(135deg,#f4f6ff,#dbe3ff)}
   .pod-rank.t3{background:linear-gradient(135deg,#ffe0c9,#ffb07a)}
-  .pod-avatar{width:64px;height:64px;border-radius:16px;margin:12px auto 6px;background:linear-gradient(135deg,var(--g2),var(--a3));background-size:cover;background-position:center;border:3px solid rgba(255,255,255,.65); box-shadow:0 6px 14px rgba(0,0,0,.35)}
+  .pod-avatar{width:64px;height:64px;border-radius:16px;margin:12px auto 6px;background:linear-gradient(135deg,var(--g2),var(--a3));background-size:cover;background-position:center;border:3px solid rgba(255,255,255,.65)}
   .pod-name,.pod-amt{position:relative; z-index:2}
-  .pod-name{font-weight:900;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}
+  .pod-name{font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}
   .pod-amt{margin-top:2px;font-weight:900;font-variant-numeric:tabular-nums;font-size:12px}
 
-  /* ===== LIST (#4–#20) ===== */
+  /* ===== LIST ===== */
   .panel.card{padding:14px}
   .panel-head{display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; margin-bottom:8px}
   .title{margin:0; font-size:18px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
@@ -126,10 +122,10 @@
   .row{display:grid; grid-template-columns:86px 1fr 150px; gap:10px; align-items:center; padding:12px 12px; background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02)); border-bottom:1px solid rgba(255,255,255,.06)}
   .row.head{background:rgba(255,255,255,.08); font-weight:900; color:#dfe3ff}
   .row:last-child{border-bottom:none}
-  .rank{display:inline-flex;align-items:center;justify-content:center;min-width:56px;height:34px;padding:0 12px;border-radius:18px;background:linear-gradient(180deg,#2c2b56,#1b1b38); border:2px solid rgba(255,255,255,.28); font-weight:900; box-shadow:0 3px 0 rgba(0,0,0,.35)}
+  .rank{display:inline-flex;align-items:center;justify-content:center;min-width:56px;height:34px;padding:0 12px;border-radius:18px;background:linear-gradient(180deg,#2c2b56,#1b1b38); border:2px solid rgba(255,255,255,.28); font-weight:900}
   .player{display:flex; align-items:center; gap:10px; min-width:0}
-  .avatar{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,var(--g2),var(--a3)); background-size:cover;background-position:center;border:2px solid rgba(255,255,255,.35); box-shadow:0 3px 0 rgba(0,0,0,.35)}
-  .mask{flex:1 1 auto; font-weight:900; letter-spacing:.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:13px}
+  .avatar{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,var(--g2),var(--a3)); background-size:cover;background-position:center;border:2px solid rgba(255,255,255,.35)}
+  .mask{flex:1 1 auto; font-weight:900; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:13px}
   .payout{font-variant-numeric:tabular-nums; font-weight:900; text-align:right; font-size:12.5px}
   @media (max-width:560px){ .row{grid-template-columns:74px 1fr 120px; padding:10px} .mask{font-size:12px} }
 
@@ -137,27 +133,20 @@
   .viewport::-webkit-scrollbar{height:8px;width:8px}
   .viewport::-webkit-scrollbar-thumb{background:#2b2d4e;border-radius:10px}
   .hit{outline:2px solid var(--a3); border-radius:10px; animation:blink 1.2s ease-in-out 2}
-  @keyframes blink{0%,100%{box-shadow:0 0 0 0 rgba(120,115,245,.0)}50%{box-shadow:0 0 0 8px rgba(120,115,245,.35)}}
 
   .pin{position:sticky;bottom:0;background:#1d1e3f;border-top:2px dashed rgba(255,255,255,.25)}
-  .pin .rank{background:linear-gradient(180deg,#4a2,#283);border-color:#7df5b1}
-
-  .cta-row{margin-top:18px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center; align-items:center}
-  .btn{display:inline-flex; align-items:center; gap:8px; padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:800; font-size:14px; color:#fff; border:1px solid rgba(255,255,255,.25); transition:transform .15s ease}
-  .btn:hover{transform:translateY(-2px)}
-  .btn--pri{background:linear-gradient(90deg,var(--g1),var(--g2)); box-shadow:0 0 0 0 rgba(120,115,245,.55); animation:pulse 2.4s ease-in-out infinite}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(120,115,245,.55)}70%{box-shadow:0 0 0 18px rgba(120,115,245,0)}100%{box-shadow:0 0 0 0 rgba(120,115,245,0)}}
+  .btn{display:inline-flex; align-items:center; gap:8px; padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:800; font-size:14px; color:#fff; border:1px solid rgba(255,255,255,.25)}
+  .btn--pri{background:linear-gradient(90deg,var(--g1),var(--g2))}
   .btn--dark{background:#1a1b34}
 
-  .support{margin-top:10px; text-align:center; color:#cfd3ff; text-shadow: 0 1px 0 rgba(0,0,0,.8), 0 6px 18px rgba(0,0,0,.35)}
+  .support{margin-top:10px; text-align:center; color:#cfd3ff}
   .support a{color:#a5b0ff; font-weight:800; text-decoration:underline}
 
-  .sharebar{margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px; border-radius:14px; background:#0f216a; border:1px solid #2c3ea0; color:#fff; box-shadow:0 10px 25px rgba(0,0,0,.25)}
-  .sharebar b{font-size:18px; letter-spacing:.5px; text-shadow:0 2px 0 rgba(0,0,0,.35)}
+  .sharebar{margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px; border-radius:14px; background:#0f216a; border:1px solid #2c3ea0; color:#fff}
+  .sharebar b{font-size:18px; letter-spacing:.5px}
   .share-actions{display:flex; gap:10px}
-  .sharebtn{display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:999px; background:#142b90; border:1px solid rgba(255,255,255,.18); text-decoration:none; transition:transform .15s ease}
-  .sharebtn:hover{transform:translateY(-2px)}
-  .sharebtn img{width:22px;height:22px; filter: drop-shadow(0 1px 0 rgba(0,0,0,.35))}
+  .sharebtn{display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:999px; background:#142b90; border:1px solid rgba(255,255,255,.18); text-decoration:none}
+  .sharebtn img{width:22px;height:22px; filter: drop-shadow(0 1px 0 rgba(0,0,0,.35)) brightness(0) invert(1)}
   .tg{background:#229ED9} .wa{background:#25D366}
 
   .divider{height:1px; margin:26px 0 8px; background:linear-gradient(90deg,transparent,#394080,transparent)}
@@ -168,17 +157,9 @@
   .faq-panel > summary::after{content:"▾"; opacity:.9; transition:transform .2s ease}
   .faq-panel[open] > summary::after{ transform:rotate(180deg) }
   .faq-body{padding:12px 14px; max-height:60vh; overflow:auto; background:#0f1030}
-  .faq-item{background:#141534; border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:10px 12px; margin:8px 0; box-shadow:0 8px 24px rgba(0,0,0,.2)}
+  .faq-item{background:#141534; border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:10px 12px; margin:8px 0}
   .faq-item > summary{cursor:pointer; font-weight:800}
   .faq-item p{margin:8px 0 0 0; color:#dfe3ff}
-
-  /* prize bullets */
-  .faq-item .prize-list { margin:0; padding:0; list-style:none; color:inherit; }
-  .faq-item .prize-list li { display:flex; align-items:center; gap:10px; margin:12px 0; }
-  .faq-item .prize-list li::before { content:""; width:8px; height:8px; border-radius:50%; background:currentColor; flex:0 0 8px; }
-
-  /* white share icons */
-  .sharebtn img{ filter: drop-shadow(0 1px 0 rgba(0,0,0,.35)) brightness(0) invert(1); }
 </style>
 </head>
 <body>
@@ -196,29 +177,29 @@
 
     <!-- HERO -->
     <section class="hero card glow">
-      <h1 class="title-3d">Spins Of Glory</h1><!-- stays English -->
-      <div class="hero-subtitle" id="t.subtitle">Daily Prizes of USD 5,000</div>
+      <h1 class="title-3d">Spins Of Glory</h1><!-- fixed English -->
+      <div class="hero-subtitle" data-i18n="subtitle">Daily Prizes of USD 5,000</div>
 
       <!-- Countdown -->
       <div class="flipbar" aria-label="Countdown">
-        <div class="tile" data-unit="d"><div class="num">00</div><div class="lab" id="lab-d">DAYS</div></div>
-        <div class="tile" data-unit="h"><div class="num">00</div><div class="lab" id="lab-h">HRS</div></div>
-        <div class="tile" data-unit="m"><div class="num">00</div><div class="lab" id="lab-m">MIN</div></div>
-        <div class="tile" data-unit="s"><div class="num">00</div><div class="lab" id="lab-s">SEC</div></div>
+        <div class="tile" data-unit="d"><div class="num">00</div><div class="lab" data-i18n="lab-d">DAYS</div></div>
+        <div class="tile" data-unit="h"><div class="num">00</div><div class="lab" data-i18n="lab-h">HRS</div></div>
+        <div class="tile" data-unit="m"><div class="num">00</div><div class="lab" data-i18n="lab-m">MIN</div></div>
+        <div class="tile" data-unit="s"><div class="num">00</div><div class="lab" data-i18n="lab-s">SEC</div></div>
       </div>
-      <p class="sub" id="t.sub">Play in Pragmatic Play Slot Games to win the daily prizes !</p>
+      <p class="sub" data-i18n="sub">Play in Pragmatic Play Slot Games to win the daily prizes !</p>
     </section>
 
     <!-- WINNERS -->
     <section class="panel card glow" style="margin-top:18px">
       <div class="panel-head">
-        <h2 class="title">🏆 <span id="t.top20">Top 20</span> • <span id="boardDate">—</span></h2>
+        <h2 class="title">🏆 <span data-i18n="top20">Top 20</span> • <span id="boardDate">—</span></h2>
         <div class="filters">
-          <label class="chip" id="pickdateLabel">📅&nbsp;<span id="t.pickdate">Pick a date</span>
+          <label class="chip">📅&nbsp;<span data-i18n="pickdate">Pick a date</span>
             <input id="datePicker" type="date" style="background:transparent;border:0;color:#fff;outline:none"></label>
-          <span class="chip" id="quickToday" style="cursor:pointer">📆 Today</span>
-          <input class="search-input" id="searchInput" type="text" placeholder="Search your full username…" />
-          <button class="search-btn" id="searchBtn">Search</button>
+          <span class="chip" id="quickToday" data-i18n="today" style="cursor:pointer">📆 Today</span>
+          <input class="search-input" id="searchInput" type="text" data-i18n-placeholder="searchPh" placeholder="Search your full username…" />
+          <button class="search-btn" id="searchBtn" data-i18n="searchBtn">Search</button>
           <span id="searchResult" style="margin-left:6px;"></span>
         </div>
       </div>
@@ -226,12 +207,12 @@
       <!-- Podium -->
       <div id="podium" class="podium" aria-live="polite"></div>
 
-      <!-- List 4–20 -->
+      <!-- List -->
       <div class="board">
         <div class="row head">
-          <div id="t.th-rank">#</div>
-          <div id="t.th-player">Player</div>
-          <div id="t.th-turnover" style="text-align:right">Turnover</div>
+          <div data-i18n="thRank">#</div>
+          <div data-i18n="thPlayer">Player</div>
+          <div style="text-align:right" data-i18n="thTurnover">Turnover</div>
         </div>
         <div id="rows" class="viewport" aria-live="polite"></div>
       </div>
@@ -239,22 +220,22 @@
 
     <!-- CTAs -->
     <div class="cta-row">
-      <a class="btn btn--pri" href="https://www.rico.bet/" target="_blank" rel="noopener" id="t.cta-play">▶ PLAY NOW</a>
-      <a class="btn btn--dark" href="https://t.me/+55A937ipq8xhMzJl" target="_blank" rel="noopener" id="t.cta-join">👥 JOIN COMMUNITY</a>
+      <a class="btn btn--pri" href="https://www.rico.bet/" target="_blank" rel="noopener" data-i18n="ctaPlay">▶ PLAY NOW</a>
+      <a class="btn btn--dark" href="https://t.me/+55A937ipq8xhMzJl" target="_blank" rel="noopener" data-i18n="ctaJoin">👥 JOIN COMMUNITY</a>
     </div>
-    <p class="support" id="t.support-wrap">
-      Need help? Message our support on Telegram and we’ll assist you:
-      <a href="https://t.me/+55A937ipq8xhMzJl" target="_blank" rel="noopener" id="t.support-link">Contact Support</a>
+    <p class="support">
+      <span data-i18n="supportLead">Need help? Message our support on Telegram and we’ll assist you:</span>
+      <a href="https://t.me/+55A937ipq8xhMzJl" target="_blank" rel="noopener" data-i18n="supportLink">Contact Support</a>
     </p>
 
     <!-- Share -->
     <div class="sharebar">
-      <b id="t.share-title">SHARE WITH YOUR FRIENDS</b>
+      <b data-i18n="shareTitle">SHARE WITH YOUR FRIENDS</b>
       <div class="share-actions">
-        <a id="shareTg" class="sharebtn tg" title="Telegram" target="_blank" rel="noopener">
+        <a id="shareTg" class="sharebtn tg" data-i18n-title="shareTg" title="Telegram" target="_blank" rel="noopener">
           <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram">
         </a>
-        <a id="shareWa" class="sharebtn wa" title="WhatsApp" target="_blank" rel="noopener">
+        <a id="shareWa" class="sharebtn wa" data-i18n-title="shareWa" title="WhatsApp" target="_blank" rel="noopener">
           <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp">
         </a>
       </div>
@@ -264,9 +245,9 @@
 
     <!-- FAQ -->
     <details class="faq-panel card glow" id="faqBox">
-      <summary id="t.faq-title">FAQ &amp; Terms</summary>
+      <summary data-i18n="faqTitle">FAQ &amp; Terms</summary>
       <div class="faq-body" id="faqBody">
-        <!-- English FAQ (seed); Portuguese version injected by JS -->
+        <!-- English FAQ seeded; Portuguese injected by JS -->
         <details class="faq-item"><summary>1. What is this event about?</summary>
           <p>This is a daily leaderboard competition on Pragmatic Play games, running from 1st October to 31st October 2025. Players compete based on their daily turnover. The higher your turnover, the higher you rank, and the better the prize you’ll receive.</p>
         </details>
@@ -335,12 +316,10 @@ const I18N = {
     htmlLang: "pt-BR",
     subtitle: "Prêmios Diários de USD 5.000",
     sub: "Jogue nos slots Pragmatic Play para ganhar prêmios diários!",
-    labs: { d: "DIAS", h: "HRS", m: "MIN", s: "SEG" },
+    "lab-d": "DIAS", "lab-h": "HRS", "lab-m": "MIN", "lab-s": "SEG",
     top20: "Top 20",
     pickdate: "Escolha a data",
-    thRank: "#",
-    thPlayer: "Jogador",
-    thTurnover: "Turnover",
+    thRank: "#", thPlayer: "Jogador", thTurnover: "Turnover",
     today: "📆 Hoje",
     searchPh: "Busque seu nome completo…",
     searchBtn: "Buscar",
@@ -354,6 +333,8 @@ const I18N = {
     supportLead: "Precisa de ajuda? Fale com nosso suporte no Telegram e nós ajudaremos:",
     supportLink: "Falar com o Suporte",
     shareTitle: "COMPARTILHE COM SEUS AMIGOS",
+    shareTg: "Compartilhar no Telegram",
+    shareWa: "Compartilhar no WhatsApp",
     shareText: "Estou em busca da glória nos rolos… junte-se à disputa por prêmios diários!",
     faqTitle: "FAQ & Termos",
     faqHTML: `
@@ -420,12 +401,10 @@ const I18N = {
     htmlLang: "en",
     subtitle: "Daily Prizes of USD 5,000",
     sub: "Play Pragmatic Play slot games to win the daily prizes!",
-    labs: { d: "DAYS", h: "HRS", m: "MIN", s: "SEC" },
+    "lab-d": "DAYS", "lab-h": "HRS", "lab-m": "MIN", "lab-s": "SEC",
     top20: "Top 20",
     pickdate: "Pick a date",
-    thRank: "#",
-    thPlayer: "Player",
-    thTurnover: "Turnover",
+    thRank: "#", thPlayer: "Player", thTurnover: "Turnover",
     today: "📆 Today",
     searchPh: "Search your full username…",
     searchBtn: "Search",
@@ -439,23 +418,23 @@ const I18N = {
     supportLead: "Need help? Message our support on Telegram and we’ll assist you:",
     supportLink: "Contact Support",
     shareTitle: "SHARE WITH YOUR FRIENDS",
+    shareTg: "Share on Telegram",
+    shareWa: "Share on WhatsApp",
     shareText: "I’m chasing glory on the reels… come join the battle for daily prizes!",
     faqTitle: "FAQ & Terms",
-    // English FAQ is taken from initial DOM (see init()).
-    faqHTML: ""
+    faqHTML: "" // filled from DOM on init
   }
 };
 
 const STORAGE_KEY = "ricobet.lang";
 
-/* ================ CONFIG (data) ================ */
+/* ===== Page config (unchanged) ===== */
 const DATA_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmj-_miuOyDdV2cshF2M_g6aaVcNqtChyeg5PII28oaWQHPFVPiQzogRBLOATha5ug0Vh2t6HUgIIP/pub?output=csv";
-/* Countdown ends Oct 31, 2025 23:59:59 UTC-3 */
 const EVENT_END_TARGET = new Date("2025-10-31T23:59:59-03:00");
 const CURRENT_TZ = "Etc/GMT+3";
 const CURRENCY = { symbol: "$", code: "USD" };
 
-/* ===== Avatars mapping (Top 20 fixed by rank) ===== */
+/* ===== Avatars ===== */
 const FIXED_AVATARS = {
   1:"https://ricomx.ft-crm.com/media-api/serve/30739191-4079-40cd-9154-f15c869c9f35_1.png",
   2:"https://ricomx.ft-crm.com/media-api/serve/7e97b3d5-f53f-4211-b7d3-0c012a8e05ff_2.png",
@@ -480,37 +459,23 @@ const FIXED_AVATARS = {
 };
 function getAvatarUrl(rank, sheetUrl){ return rank<=20 ? (FIXED_AVATARS[rank]||sheetUrl||"") : (FIXED_AVATARS[20]||sheetUrl||""); }
 
-/* ===== Elements ===== */
+/* ===== DOM helpers ===== */
 const $ = s=>document.querySelector(s);
 const rowsEl = $('#rows'), podiumEl = $('#podium'), boardDateEl = $('#boardDate');
 const datePicker = $('#datePicker'), searchInput = $('#searchInput'), searchBtn = $('#searchBtn'), searchResult = $('#searchResult');
 const langSelect = $('#langSelect');
 
-/* ===== Helpers ===== */
 const fmtMoney = n => `${CURRENCY.symbol} ${Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}`;
 const pad2 = n => String(n).padStart(2,'0');
 const toTZ = (d=new Date(), tz=CURRENT_TZ, opts={}) => new Intl.DateTimeFormat('en-CA', { timeZone: tz, ...opts });
 const ymdInTZ = d => toTZ(d, CURRENT_TZ, {year:'numeric',month:'2-digit',day:'2-digit'}).format(d);
 
-/* Robust name normalization */
-function normName(s){
-  return String(s||"")
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g,"")
-    .replace(/[\u200B-\u200D\uFEFF]/g,"")
-    .replace(/\u00A0/g," ")
-    .replace(/\s+/g," ")
-    .trim()
-    .toLowerCase();
-}
-function maskMiddle4(name){
-  const s = String(name||''); if (s.length<=4){ if(s.length<=2) return s[0]+(s[1]?'*'+s[1]:''); return s[0]+"**"+s.slice(-1); }
-  const left = Math.floor((s.length-4)/2); return s.slice(0,left)+"****"+s.slice(left+4);
-}
+function normName(s){ return String(s||"").normalize("NFKD").replace(/[\u0300-\u036f]/g,"").replace(/[\u200B-\u200D\uFEFF]/g,"").replace(/\u00A0/g," ").replace(/\s+/g," ").trim().toLowerCase(); }
+function maskMiddle4(name){ const s=String(name||''); if(s.length<=4){ if(s.length<=2) return s[0]+(s[1]?'*'+s[1]:''); return s[0]+"**"+s.slice(-1);} const left=Math.floor((s.length-4)/2); return s.slice(0,left)+"****"+s.slice(left+4); }
 function bust(url){ return url ? url + (url.includes('?')?'&':'?') + 'v=' + Date.now() : ''; }
 function avatarStyle(url){ return url ? `style="background-image:url('${bust(url)}');"` : ""; }
 
-/* ===== CSV parser ===== */
+/* ===== CSV ===== */
 function parseCSV(text){
   const rows=[]; let cur=[], curVal='', inQ=false;
   for(let i=0;i<text.length;i++){
@@ -524,10 +489,9 @@ function parseCSV(text){
   return rows;
 }
 
-/* ===== Data load ===== */
 let cache = [];
 let MIN_YMD = null, MAX_YMD = null;
-const dayIndex = new Map(); // ymd -> Map(normalizedName -> bestRow)
+const dayIndex = new Map();
 
 async function loadCSV(){
   const url = DATA_CSV_URL + (DATA_CSV_URL.includes('?')?'&':'?') + 't=' + Date.now();
@@ -538,30 +502,23 @@ async function loadCSV(){
   const table = parseCSV(text).filter(r=>r.length);
   if(table.length<2) return;
   const header = table[0].map(h=>h.trim().toLowerCase());
-  const idx = {
-    date: header.indexOf('date'),
-    rank: header.indexOf('rank'),
-    name: header.indexOf('username'),
-    amount: header.indexOf('turnover'),
-    avatar: header.indexOf('avatar'),
-  };
+  const idx = { date: header.indexOf('date'), rank: header.indexOf('rank'), name: header.indexOf('username'), amount: header.indexOf('turnover'), avatar: header.indexOf('avatar') };
   const out = [];
   for(let i=1;i<table.length;i++){
     const r = table[i];
     const date   = (r[idx.date]||'').trim();
     const rank   = Number((r[idx.rank]||'').trim()||0);
     const rawName= (r[idx.name]||'');
-    const name   = rawName;
     const nKey   = normName(rawName);
     const amtStr = String(r[idx.amount]||'0').replace(/[$,\s]/g,'');
     const amount = Number(amtStr)||0;
     const avatar = (r[idx.avatar]||'').trim();
     if(!date || !nKey) continue;
-    out.push({date, rank, name, nKey, amount, avatar});
+    out.push({date, rank, name:rawName, nKey, amount, avatar});
   }
   cache = out;
 
-  // Build per-day index
+  // index per day
   dayIndex.clear();
   const dates = Array.from(new Set(cache.map(r=>r.date))).sort();
   for(const d of dates){
@@ -573,9 +530,7 @@ async function loadCSV(){
       const r = sorted[i];
       const compRank = hasRank ? (r.rank||i+1) : (i+1);
       const prev = map.get(r.nKey);
-      if(!prev || compRank < prev.finalRank){
-        map.set(r.nKey, {...r, finalRank: compRank});
-      }
+      if(!prev || compRank < prev.finalRank){ map.set(r.nKey, {...r, finalRank: compRank}); }
     }
     dayIndex.set(d, map);
   }
@@ -584,14 +539,7 @@ async function loadCSV(){
   if(datePicker){ datePicker.min = MIN_YMD; datePicker.max = MAX_YMD; }
 }
 
-function getSortedDay(ymd){
-  const rows = cache.filter(r=>r.date===ymd);
-  if(!rows.length) return [];
-  const hasRank = rows.some(r=>r.rank>0);
-  return rows.slice().sort((a,b)=> hasRank ? (a.rank||999999)-(b.rank||999999) : (b.amount||0)-(a.amount||0));
-}
-
-/* ===== Language apply ===== */
+/* ===== I18N engine (via data-i18n attributes) ===== */
 function setShareLinks(textMsg){
   const shareUrl = location.href.split('#')[0];
   $('#shareTg').href = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(textMsg)}`;
@@ -602,60 +550,40 @@ function applyLang(code){
   const L = I18N[code] || I18N.pt;
   document.documentElement.lang = L.htmlLang || code;
 
-  const set = (sel, prop, val) => {
-    const el = document.querySelector(sel);
-    if (!el) { console.warn('[i18n] missing:', sel); return; }
-    el[prop] = val;
-  };
+  // textContent targets
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if (L[key] !== undefined) el.textContent = L[key];
+  });
 
-  // hero (title remains English by design)
-  set('#t.subtitle', 'textContent', L.subtitle);
-  set('#t.sub', 'textContent', L.sub);
+  // placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (L[key] !== undefined) el.placeholder = L[key];
+  });
 
-  // countdown labels
-  set('#lab-d','textContent', L.labs.d);
-  set('#lab-h','textContent', L.labs.h);
-  set('#lab-m','textContent', L.labs.m);
-  set('#lab-s','textContent', L.labs.s);
+  // titles
+  document.querySelectorAll('[data-i18n-title]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-title');
+    if (L[key] !== undefined) el.title = L[key];
+  });
 
-  // panel + filters
-  set('#t.top20','textContent', L.top20);
-  set('#t.pickdate','textContent', L.pickdate);
-  set('#quickToday','textContent', L.today);
-  const si = document.querySelector('#searchInput'); if (si) si.placeholder = L.searchPh;
-  set('#searchBtn','textContent', L.searchBtn);
-
-  // table headers
-  set('#t.th-rank','textContent', L.thRank);
-  set('#t.th-player','textContent', L.thPlayer);
-  set('#t.th-turnover','textContent', L.thTurnover);
-
-  // CTAs
-  set('#t.cta-play','textContent', L.ctaPlay);
-  set('#t.cta-join','textContent', L.ctaJoin);
-
-  // Support line + link
-  const supWrap = document.querySelector('#t.support-wrap');
-  const link = document.querySelector('#t.support-link');
-  if (supWrap){
-    supWrap.innerHTML = '';
-    supWrap.appendChild(document.createTextNode(L.supportLead + ' '));
-    if (link) supWrap.appendChild(link);
-  }
-  set('#t.support-link','textContent', L.supportLink);
-
-  // Share title
-  set('#t.share-title','textContent', L.shareTitle);
-
-  // FAQ title + body
-  set('#t.faq-title','textContent', L.faqTitle);
-  const fb = document.querySelector('#faqBody'); if (fb) fb.innerHTML = L.faqHTML;
-
-  // Share message
+  // dynamic text (support line reuses two separate nodes already)
   setShareLinks(L.shareText);
+
+  // FAQ title already handled by data-i18n; inject the localized body:
+  const fb = document.getElementById('faqBody');
+  if (fb && typeof L.faqHTML === 'string' && L.faqHTML) fb.innerHTML = L.faqHTML;
 }
 
-/* ===== Render ===== */
+/* ===== Render board ===== */
+function getSortedDay(ymd){
+  const rows = cache.filter(r=>r.date===ymd);
+  if(!rows.length) return [];
+  const hasRank = rows.some(r=>r.rank>0);
+  return rows.slice().sort((a,b)=> hasRank ? (a.rank||999999)-(b.rank||999999) : (b.amount||0)-(a.amount||0));
+}
+
 function renderDay(ymd){
   const L = I18N[currentLang] || I18N.pt;
   boardDateEl.textContent = ymd;
@@ -668,7 +596,6 @@ function renderDay(ymd){
     return;
   }
 
-  // Podium 1–3 (center = #1, left = #2, right = #3)
   const top3 = sorted.slice(0,3);
   [1,0,2].forEach((i)=>{
     const r = top3[i]; if(!r) return;
@@ -677,9 +604,7 @@ function renderDay(ymd){
     const avatarUrlTop = getAvatarUrl(shownRank, r.avatar);
     podiumEl.insertAdjacentHTML('beforeend', `
       <div class="pod ${cls}">
-        <div class="pod-rank t${shownRank}">
-          <span class="trophy">🏆</span> #${shownRank}
-        </div>
+        <div class="pod-rank t${shownRank}"><span>🏆</span> #${shownRank}</div>
         <div class="pod-avatar" ${avatarStyle(avatarUrlTop)}></div>
         <div class="pod-name">${maskMiddle4(r.name)}</div>
         <div class="pod-amt">${fmtMoney(r.amount)}</div>
@@ -687,7 +612,6 @@ function renderDay(ymd){
     `);
   });
 
-  // List 4–20 (names & amounts remain, not translated)
   sorted.slice(3,20).forEach((r, idx)=>{
     const rankShown = r.rank>0 ? r.rank : (idx+4);
     const avatarUrlRow = getAvatarUrl(rankShown, r.avatar);
@@ -704,7 +628,7 @@ function renderDay(ymd){
   });
 }
 
-/* ===== Search (localized messages) ===== */
+/* ===== Search with localized messages ===== */
 function doSearch(){
   const L = I18N[currentLang] || I18N.pt;
   const q = (searchInput.value||'').trim();
@@ -767,36 +691,32 @@ function doSearch(){
 })();
 
 /* ===== Init ===== */
-let currentLang = localStorage.getItem(STORAGE_KEY) || 'pt'; // default Portuguese
+let currentLang = localStorage.getItem(STORAGE_KEY) || 'pt'; // default = Portuguese
+
 (async function init(){
-  // Seed EN FAQ from the DOM before swapping
+  // seed EN FAQ from DOM before swaps
   const fb = document.getElementById('faqBody');
   if (fb) I18N.en.faqHTML = fb.innerHTML;
 
-  // Init language selector + apply
   langSelect.value = currentLang;
   applyLang(currentLang);
 
-  // Load data and render
   await loadCSV();
 
-  // default date = today (UTC-3) then clamp to data range
   const today = (()=>{ const d = new Date(); return ymdInTZ(d); })();
   datePicker.value = (today < MIN_YMD) ? MIN_YMD : (today > MAX_YMD ? MAX_YMD : today);
   renderDay(datePicker.value);
 
-  // events
-  datePicker.addEventListener('change', ()=> renderDay(datePicker.value));
+  // Events
   document.getElementById('quickToday').addEventListener('click', ()=>{
     const y = (()=>{ const d = new Date(); return ymdInTZ(d); })();
     const c = (y < MIN_YMD)?MIN_YMD:(y > MAX_YMD?MAX_YMD:y);
     datePicker.value=c; renderDay(c);
   });
-
+  datePicker.addEventListener('change', ()=> renderDay(datePicker.value));
   searchBtn.addEventListener('click', doSearch);
   searchInput.addEventListener('keydown', e=>{ if(e.key==='Enter') doSearch(); });
 
-  // language change
   langSelect.addEventListener('change', ()=>{
     currentLang = langSelect.value;
     localStorage.setItem(STORAGE_KEY, currentLang);
