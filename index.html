@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>RicoBet • Spins Of Glory</title>
+<meta name="theme-color" content="#121125" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<style>
+  :root{
+    --bg-image: url("https://ricobr.ft-crm.com/media-api/serve/a02f364f-bea1-4a99-ae4c-211994eced91_2.png");
+    --bg:#0f1129; --card:#121125; --ring:#2a2e58;
+    --tx:#f2f3ff; --mut:#c7cbff; --g1:#ff6ec4; --g2:#7873f5; --a3:#78f3ff;
+    --row-h:56px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 10% -10%,rgba(255,110,196,.10),transparent),
+      radial-gradient(900px 500px at 100% 110%,rgba(120,115,245,.10),transparent),
+      var(--bg-image), var(--bg);
+    background-size:auto,auto,cover,auto;
+    background-position:center;
+    background-attachment:fixed,fixed,fixed,fixed;
+    color:var(--tx);
+    font:14px/1.45 Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif
+  }
+  .wrap{max-width:1080px; margin:24px auto 46px; padding:0 16px}
+
+  /* topbar: logo left, language right */
+  .topbar{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px}
+  .logo-img{height:36px;width:auto;display:block}
+  @media (max-width:520px){ .logo-img{height:28px} }
+
+  .lang-switch{
+    display:inline-flex; align-items:center; gap:8px; font-weight:800;
+    background:#17183a; border:1px solid rgba(255,255,255,.18);
+    padding:6px 10px; border-radius:12px;
+  }
+  .lang-switch select{
+    appearance:none; background:transparent; border:0; color:#fff; font-weight:900; outline:none; cursor:pointer;
+  }
+
+  .card{position:relative; border:1px solid var(--ring); border-radius:18px; background:rgba(18,17,37,.86)}
+  .glow::before{
+    content:""; position:absolute; inset:-2px; border-radius:20px; padding:2px;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--a3),var(--g1)); background-size:400% 100%;
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude; animation:shine 9s linear infinite; pointer-events:none;
+  }
+  @keyframes shine{0%{background-position:0% 0}100%{background-position:400% 0}}
+
+  /* ===== HERO ===== */
+  .hero.card{padding:18px; text-align:center}
+  .title-3d{
+    margin:2px 0 4px;
+    font-weight:900;
+    letter-spacing:.8px;
+    text-transform:uppercase;
+    color:#fff;
+    text-shadow:0 0 8px #7873f5, 0 0 14px #ff6ec4;
+    animation:glowTitle 3s ease-in-out infinite alternate, pop .6s ease-out both;
+    font-size:42px;
+    line-height:1.05;
+  }
+  @keyframes glowTitle{from{text-shadow:0 0 6px #7873f5,0 0 12px #ff6ec4}to{text-shadow:0 0 14px #ff6ec4,0 0 24px #7873f5}}
+  @keyframes pop{0%{transform:translateY(6px) scale(.98);opacity:0}100%{transform:translateY(0) scale(1);opacity:1}}
+
+  @media (max-width:720px){ .title-3d{font-size:34px} }
+  @media (max-width:520px){ .title-3d{font-size:28px} }
+
+  .hero-subtitle{
+    margin:6px auto 8px; font-weight:800; font-size:28px;
+    background:linear-gradient(90deg,var(--g1),var(--a3),var(--g2),var(--g1));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    background-size:300% 100%; animation:shine 6s linear infinite
+  }
+  @media (max-width:720px){ .hero-subtitle{font-size:22px} }
+  @media (max-width:520px){ .hero-subtitle{font-size:18px} }
+  .sub{margin:12px 0 0; color:var(--mut)}
+
+  /* ==== COUNTDOWN (one row) ==== */
+  .flipbar{
+    display:grid; grid-template-columns:repeat(4, 1fr);
+    gap:14px; justify-items:stretch; align-items:stretch; margin-top:10px
+  }
+  .tile{
+    height:96px; border-radius:14px; position:relative; overflow:hidden;
+    background:linear-gradient(180deg,#221f45,#191837); border:1px solid rgba(255,255,255,.18);
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+    display:grid; place-items:center;
+  }
+  .num{font-weight:900; font-size:32px; letter-spacing:.5px; background:linear-gradient(180deg,#fff,#d9dcff); -webkit-background-clip:text; color:transparent; text-shadow:0 6px 22px rgba(120,115,245,.45)}
+  .lab{position:absolute;bottom:6px;left:0;right:0;text-align:center;color:#c7cbff;font-size:10px;letter-spacing:.35px}
+  .tile.flip{animation:flip .5s ease}
+  @keyframes flip{0%{transform:rotateX(0)}50%{transform:rotateX(-60deg)}100%{transform:rotateX(0)}}
+  @media (max-width:520px){ .tile{height:78px} .num{font-size:26px} }
+
+  /* ===== TOP 3 Podium ===== */
+  .podium{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:end;margin:16px 0 6px}
+  .pod{
+    position:relative;border-radius:16px;text-align:center;padding:16px 10px 24px;
+    background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.03));
+    border:2px solid rgba(255,255,255,.24); box-shadow:0 14px 28px rgba(0,0,0,.38); overflow:visible;
+  }
+  .pod--1{transform:translateY(-8px);background:linear-gradient(180deg,#3a2f6b,#211e46)}
+  .pod-rank {
+    position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+    display:inline-flex; align-items:center; gap:4px; padding:4px 10px; border-radius:999px;
+    font-weight:900; font-size:13px; border:2px solid rgba(255,255,255,.35);
+    background:rgba(255,255,255,.95); color:#1b1b38; box-shadow:0 3px 6px rgba(0,0,0,.35);
+  }
+  .pod-rank.t1 { background:linear-gradient(135deg,#fff6b5,#ffd84a); }
+  .pod-rank.t2 { background:linear-gradient(135deg,#f4f6ff,#dbe3ff); }
+  .pod-rank.t3 { background:linear-gradient(135deg,#ffe0c9,#ffb07a); }
+  .pod-rank .trophy-icon { font-size:14px; filter:drop-shadow(0 1px 0 rgba(0,0,0,.25)); }
+
+  .trophy{position:absolute; bottom:-8px; left:50%; transform:translateX(-50%) rotate(-2deg); width:56px; height:38px; border-radius:12px; display:grid; place-items:center; border:3px solid rgba(255,255,255,.65); box-shadow:0 12px 20px rgba(0,0,0,.45); background:var(--tbg); font-size:18px; color:#1a1b38; animation:wobble 2.4s ease-in-out infinite; z-index:3; pointer-events:none}
+  .t1{ --tbg: linear-gradient(135deg,#fff6b5,#ffd84a) } .t2{ --tbg: linear-gradient(135deg,#f4f6ff,#dbe3ff) } .t3{ --tbg: linear-gradient(135deg,#ffe0c9,#ffb07a) }
+  .trophy::after{ content:"🏆"; filter:drop-shadow(0 2px 0 rgba(0,0,0,.25)); }
+  .pod-avatar{width:64px;height:64px;border-radius:16px;margin:12px auto 6px;background:linear-gradient(135deg,var(--g2),var(--a3));background-size:cover;background-position:center;border:3px solid rgba(255,255,255,.65); box-shadow:0 6px 14px rgba(0,0,0,.35)}
+  .pod-name,.pod-amt{position:relative; z-index:2}
+  .pod-name{font-weight:900;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}
+  .pod-amt{margin-top:2px;font-weight:900;font-variant-numeric:tabular-nums;font-size:12px}
+
+  /* ===== LIST (#4–#20) ===== */
+  .panel.card{padding:14px}
+  .panel-head{display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; margin-bottom:8px}
+  .title{margin:0; font-size:18px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .filters{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+  .chip{display:inline-flex; align-items:center; gap:6px; padding:8px 10px; border-radius:10px; font-size:12px; color:#fff; background:#1b1c33; border:1px solid rgba(255,255,255,.12)}
+  .search-input{appearance:none; background:#141534; border:1px solid rgba(255,255,255,.15); color:#fff; border-radius:10px; padding:8px 10px; min-width:220px; outline:none}
+  .search-btn{cursor:pointer; background:linear-gradient(90deg,var(--g1),var(--g2)); border:0; color:#fff; font-weight:900; border-radius:10px; padding:8px 12px}
+
+  .board{width:100%; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.08)}
+  .row{display:grid; grid-template-columns:86px 1fr 150px; gap:10px; align-items:center; padding:12px 12px; background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02)); border-bottom:1px solid rgba(255,255,255,.06)}
+  .row.head{background:rgba(255,255,255,.08); font-weight:900; color:#dfe3ff}
+  .row:last-child{border-bottom:none}
+  .rank{display:inline-flex;align-items:center;justify-content:center;min-width:56px;height:34px;padding:0 12px;border-radius:18px;background:linear-gradient(180deg,#2c2b56,#1b1b38); border:2px solid rgba(255,255,255,.28); font-weight:900; box-shadow:0 3px 0 rgba(0,0,0,.35)}
+  .player{display:flex; align-items:center; gap:10px; min-width:0}
+  .avatar{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,var(--g2),var(--a3)); background-size:cover;background-position:center;border:2px solid rgba(255,255,255,.35); box-shadow:0 3px 0 rgba(0,0,0,.35)}
+  .mask{flex:1 1 auto; font-weight:900; letter-spacing:.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:13px}
+  .payout{font-variant-numeric:tabular-nums; font-weight:900; text-align:right; font-size:12.5px}
+  @media (max-width:560px){ .row{grid-template-columns:74px 1fr 120px; padding:10px} .mask{font-size:12px} }
+
+  .viewport{max-height:calc(var(--row-h) * 5); overflow-y:auto}
+  .viewport::-webkit-scrollbar{height:8px;width:8px}
+  .viewport::-webkit-scrollbar-thumb{background:#2b2d4e;border-radius:10px}
+  .hit{outline:2px solid var(--a3); border-radius:10px; animation:blink 1.2s ease-in-out 2}
+  @keyframes blink{0%,100%{box-shadow:0 0 0 0 rgba(120,115,245,.0)}50%{box-shadow:0 0 0 8px rgba(120,115,245,.35)}}
+
+  .pin{position:sticky;bottom:0;background:#1d1e3f;border-top:2px dashed rgba(255,255,255,.25)}
+  .pin .rank{background:linear-gradient(180deg,#4a2,#283);border-color:#7df5b1}
+
+  .cta-row{margin-top:18px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center; align-items:center}
+  .btn{display:inline-flex; align-items:center; gap:8px; padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:800; font-size:14px; color:#fff; border:1px solid rgba(255,255,255,.25); transition:transform .15s ease}
+  .btn:hover{transform:translateY(-2px)}
+  .btn--pri{background:linear-gradient(90deg,var(--g1),var(--g2)); box-shadow:0 0 0 0 rgba(120,115,245,.55); animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(120,115,245,.55)}70%{box-shadow:0 0 0 18px rgba(120,115,245,0)}100%{box-shadow:0 0 0 0 rgba(120,115,245,0)}}
+  .btn--dark{background:#1a1b34}
+
+  .support{margin-top:10px; text-align:center; color:#cfd3ff; text-shadow: 0 1px 0 rgba(0,0,0,.8), 0 6px 18px rgba(0,0,0,.35)}
+  .support a{color:#a5b0ff; font-weight:800; text-decoration:underline}
+
+  .sharebar{margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px; border-radius:14px; background:#0f216a; border:1px solid #2c3ea0; color:#fff; box-shadow:0 10px 25px rgba(0,0,0,.25)}
+  .sharebar b{font-size:18px; letter-spacing:.5px; text-shadow:0 2px 0 rgba(0,0,0,.35)}
+  .share-actions{display:flex; gap:10px}
+  .sharebtn{display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:999px; background:#142b90; border:1px solid rgba(255,255,255,.18); text-decoration:none; transition:transform .15s ease}
+  .sharebtn:hover{transform:translateY(-2px)}
+  .sharebtn img{width:22px;height:22px; filter: drop-shadow(0 1px 0 rgba(0,0,0,.35))}
+  .tg{background:#229ED9} .wa{background:#25D366}
+
+  .divider{height:1px; margin:26px 0 8px; background:linear-gradient(90deg,transparent,#394080,transparent)}
+
+  /* ===== FAQ ===== */
+  .faq-panel{border-radius:18px; overflow:hidden}
+  .faq-panel > summary{list-style:none; cursor:pointer; padding:14px 16px; font-weight:900; font-size:16px; background:#17183a; color:#fff; display:flex; align-items:center; justify-content:space-between}
+  .faq-panel > summary::after{content:"▾"; opacity:.9; transition:transform .2s ease}
+  .faq-panel[open] > summary::after{ transform:rotate(180deg) }
+  .faq-body{padding:12px 14px; max-height:60vh; overflow:auto; background:#0f1030}
+  .faq-item{background:#141534; border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:10px 12px; margin:8px 0; box-shadow:0 8px 24px rgba(0,0,0,.2)}
+  .faq-item > summary{cursor:pointer; font-weight:800}
+  .faq-item p{margin:8px 0 0 0; color:#dfe3ff}
+
+  /* prize bullets */
+  .faq-item .prize-list { margin:0; padding:0; list-style:none; color:inherit; }
+  .faq-item .prize-list li { display:flex; align-items:center; gap:10px; margin:12px 0; }
+  .faq-item .prize-list li::before { content:""; width:8px; height:8px; border-radius:50%; background:currentColor; flex:0 0 8px; }
+
+  /* Make all share icons white */
+  .sharebtn img{ filter: drop-shadow(0 1px 0 rgba(0,0,0,.35)) brightness(0) invert(1); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar" aria-label="RicoBet">
+      <img src="https://ricobr.ft-crm.com/media-api/serve/c5570255-af15-4915-8b16-907d5bc7f999_Rico_Logo.png" alt="RicoBet" class="logo-img" />
+      <div class="lang-switch">
+        🌐
+        <select id="langSelect" aria-label="Language">
+          <option value="pt">Português (BR)</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero card glow">
+      <h1 class="title-3d" id="t.title">Spins Of Glory</h1>
+      <div class="hero-subtitle" id="t.subtitle">Prêmios Diários de USD 5.000</div>
+
+      <!-- One-row countdown -->
+      <div class="flipbar" aria-label="Countdown">
+        <div class="tile" data-unit="d"><div class="num">00</div><div class="lab" id="lab-d">DIAS</div></div>
+        <div class="tile" data-unit="h"><div class="num">00</div><div class="lab" id="lab-h">HRS</div></div>
+        <div class="tile" data-unit="m"><div class="num">00</div><div class="lab" id="lab-m">MIN</div></div>
+        <div class="tile" data-unit="s"><div class="num">00</div><div class="lab" id="lab-s">SEG</div></div>
+      </div>
+      <p class="sub" id="t.sub">Jogue nos slots Pragmatic Play para ganhar prêmios diários!</p>
+    </section>
+
+    <!-- WINNERS -->
+    <section class="panel card glow" style="margin-top:18px">
+      <div class="panel-head">
+        <h2 class="title">🏆 <span id="t.top20">Top 20</span> • <span id="boardDate">—</span></h2>
+        <div class="filters">
+          <label class="chip" title="" id="t.pickdate">📅&nbsp;<input id="datePicker" type="date" style="background:transparent;border:0;color:#fff;outline:none"></label>
+          <span class="chip" id="quickToday" style="cursor:pointer">📆 Hoje</span>
+          <input class="search-input" id="searchInput" type="text" placeholder="Busque seu nome completo…" />
+          <button class="search-btn" id="searchBtn">Buscar</button>
+          <span id="searchResult" style="margin-left:6px;"></span>
+        </div>
+      </div>
+
+      <!-- Podium -->
+      <div id="podium" class="podium" aria-live="polite"></div>
+
+      <!-- List 4–20 -->
+      <div class="board">
+        <div class="row head">
+          <div id="t.th-rank">#</div><div id="t.th-player">Jogador</div><div style="text-align:right" id="t.th-turnover">Turnover</div>
+        </div>
+        <div id="rows" class="viewport" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- CTAs -->
+    <div class="cta-row">
+      <a class="btn btn--pri" href="https://www.rico.bet/" target="_blank" rel="noopener" id="t.cta-play">▶ JOGAR AGORA</a>
+      <a class="btn btn--dark" href="https://t.me/+55A937ipq8xhMzJl" target="_blank" rel="noopener" id="t.cta-join">👥 ENTRAR NA COMUNIDADE</a>
+    </div>
+    <p class="support" id="t.support">
+      Precisa de ajuda? Fale com nosso suporte no Telegram: <a href="https://t.me/+55A937ipq8xhMzJl" target="_blank" rel="noopener" id="t.support-link">Falar com o Suporte</a>
+    </p>
+
+    <!-- Share -->
+    <div class="sharebar">
+      <b id="t.share-title">COMPARTILHE COM SEUS AMIGOS</b>
+      <div class="share-actions">
+        <a id="shareTg" class="sharebtn tg" title="Telegram" target="_blank" rel="noopener">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram">
+        </a>
+        <a id="shareWa" class="sharebtn wa" title="WhatsApp" target="_blank" rel="noopener">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp">
+        </a>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- FAQ -->
+    <details class="faq-panel card glow" id="faqBox">
+      <summary id="t.faq-title">FAQ &amp; Termos</summary>
+      <div class="faq-body" id="faqBody"><!-- injected by i18n --></div>
+    </details>
+  </div>
+
+<script>
+/* ================= I18N ================= */
+const I18N = {
+  pt: {
+    htmlLang: "pt-BR",
+    title: "Spins Of Glory",
+    subtitle: "Prêmios Diários de USD 5.000",
+    sub: "Jogue nos slots Pragmatic Play para ganhar prêmios diários!",
+    labs: { d: "DIAS", h: "HRS", m: "MIN", s: "SEG" },
+    top20: "Top 20",
+    pickdate: "📅 Escolha a data",
+    thRank: "#",
+    thPlayer: "Jogador",
+    thTurnover: "Turnover",
+    today: "📆 Hoje",
+    searchPh: "Busque seu nome completo…",
+    searchBtn: "Buscar",
+    searchNoData: (ymd)=>`Sem dados para ${ymd}.`,
+    searchNoMatch: (q,ymd)=>`Nenhuma correspondência exata para “${q}” em ${ymd}.`,
+    searchTop: (name,rank)=>`✅ ${name} está em #${rank} hoje.`,
+    searchBelow: (name,rank)=>`ℹ️ ${name} está em #${rank} hoje.`,
+    noResults: (ymd)=>`Sem resultados para ${ymd}.`,
+    ctaPlay: "▶ JOGAR AGORA",
+    ctaJoin: "👥 ENTRAR NA COMUNIDADE",
+    support: 'Precisa de ajuda? Fale com nosso suporte no Telegram:',
+    supportLink: "Falar com o Suporte",
+    shareTitle: "COMPARTILHE COM SEUS AMIGOS",
+    shareText: "Estou em busca da glória nos rolos… junte-se à disputa por prêmios diários!",
+    faqTitle: "FAQ & Termos",
+    faqHTML: `
+      <details class="faq-item"><summary>1. Sobre o evento</summary>
+        <p>Competição diária de leaderboard em jogos Pragmatic Play, de 1 a 31 de outubro de 2025. A classificação é pelo turnover diário.</p>
+      </details>
+      <details class="faq-item"><summary>2. Como participar?</summary>
+        <p>Jogue qualquer slot da Pragmatic Play no período do evento. Seu turnover será contabilizado automaticamente.</p>
+      </details>
+      <details class="faq-item"><summary>3. Distribuição de prêmios</summary>
+        <p>Todos os dias, os Top 20 dividem o prêmio diário de $5.000:</p>
+        <ul class="prize-list">
+          <li>1º lugar: $1.500</li>
+          <li>2º–5º: $500 cada</li>
+          <li>6º–10º: $200 cada</li>
+          <li>11º–20º: $50 cada</li>
+        </ul>
+      </details>
+      <details class="faq-item"><summary>4. Prize pool total</summary>
+        <p>$150.000 no mês, dividido em $5.000 por dia.</p>
+      </details>
+      <details class="faq-item"><summary>5. Reset do ranking</summary>
+        <p>Reinicia diariamente às 00:00.</p>
+      </details>
+      <details class="faq-item"><summary>6. Atualizações</summary>
+        <p>Atualizado a cada 8 horas.</p>
+      </details>
+      <details class="faq-item"><summary>7. Como vejo minha posição?</summary>
+        <p>Consulte o leaderboard. Fora do Top 20, busque seu usuário para ver a colocação.</p>
+      </details>
+      <details class="faq-item"><summary>8. Recebimento do prêmio</summary>
+        <p>Pago no dia seguinte às 12:00.</p>
+      </details>
+      <details class="faq-item"><summary>9. Empate</summary>
+        <p>Em caso de empate no turnover, quem alcançou primeiro fica acima.</p>
+      </details>
+      <details class="faq-item"><summary>10. Posso ganhar em vários dias?</summary>
+        <p>Sim, sem limites.</p>
+      </details>
+      <details class="faq-item"><summary>11. Free Spins e bônus contam?</summary>
+        <ul>
+          <li>Sim, turnover em dinheiro e bônus nos slots da Pragmatic Play conta.</li>
+          <li>Outros jogos/categorias não contam.</li>
+        </ul>
+      </details>
+      <details class="faq-item"><summary>12. Elegibilidade</summary>
+        <p>Todos que apostarem nos slots da Pragmatic Play durante o mês.</p>
+      </details>
+      <details class="faq-item"><summary>13. Requisitos de apostas</summary>
+        <p>Prêmios em dinheiro: wagering x5 antes de qualquer saque.</p>
+      </details>
+      <details class="faq-item"><summary>14. Troca de prêmios</summary>
+        <p>Não é possível trocar ou transferir.</p>
+      </details>
+      <details class="faq-item"><summary>15. Termos & condições</summary>
+        <ul>
+          <li>Rico.bet pode desclassificar atividades fraudulentas, múltiplas contas ou violações.</li>
+          <li>Aplicam-se os Termos & Condições gerais da Rico.bet.</li>
+        </ul>
+      </details>
+    `
+  },
+  en: {
+    htmlLang: "en",
+    title: "Spins Of Glory",
+    subtitle: "Daily Prizes of USD 5,000",
+    sub: "Play Pragmatic Play slot games to win daily prizes!",
+    labs: { d: "DAYS", h: "HRS", m: "MIN", s: "SEC" },
+    top20: "Top 20",
+    pickdate: "📅 Pick a date",
+    thRank: "#",
+    thPlayer: "Player",
+    thTurnover: "Turnover",
+    today: "📆 Today",
+    searchPh: "Search your full username…",
+    searchBtn: "Search",
+    searchNoData: (ymd)=>`No data for ${ymd}.`,
+    searchNoMatch: (q,ymd)=>`No exact match for “${q}” on ${ymd}.`,
+    searchTop: (name,rank)=>`✅ ${name} is #${rank} today.`,
+    searchBelow: (name,rank)=>`ℹ️ ${name} is #${rank} today.`,
+    noResults: (ymd)=>`No results for ${ymd}.`,
+    ctaPlay: "▶ PLAY NOW",
+    ctaJoin: "👥 JOIN COMMUNITY",
+    support: 'Need help? Message our support on Telegram:',
+    supportLink: "Contact Support",
+    shareTitle: "SHARE WITH YOUR FRIENDS",
+    shareText: "I’m chasing glory on the reels… come join the battle for daily prizes!",
+    faqTitle: "FAQ & Terms",
+    faqHTML: `
+      <details class="faq-item"><summary>1. What is this event?</summary>
+        <p>A daily leaderboard on Pragmatic Play games from Oct 1–31, 2025. Ranking is by daily turnover.</p>
+      </details>
+      <details class="faq-item"><summary>2. How to participate?</summary>
+        <p>Play any Pragmatic Play slots during the event. Your turnover is tracked automatically.</p>
+      </details>
+      <details class="faq-item"><summary>3. Prizes distribution</summary>
+        <p>Each day the Top 20 share the $5,000 pool:</p>
+        <ul class="prize-list">
+          <li>1st: $1,500</li>
+          <li>2nd–5th: $500 each</li>
+          <li>6th–10th: $200 each</li>
+          <li>11th–20th: $50 each</li>
+        </ul>
+      </details>
+      <details class="faq-item"><summary>4. Total prize pool</summary>
+        <p>$150,000 for the month, split into $5,000 daily.</p>
+      </details>
+      <details class="faq-item"><summary>5. When does it reset?</summary>
+        <p>Resets daily at 00:00.</p>
+      </details>
+      <details class="faq-item"><summary>6. Update frequency</summary>
+        <p>Updated every 8 hours.</p>
+      </details>
+      <details class="faq-item"><summary>7. How to see my rank?</summary>
+        <p>Check the leaderboard. If not in Top 20, search your username to see your position.</p>
+      </details>
+      <details class="faq-item"><summary>8. When are prizes paid?</summary>
+        <p>The next day at 12:00 PM.</p>
+      </details>
+      <details class="faq-item"><summary>9. Ties</summary>
+        <p>If turnover ties, whoever reached it first ranks higher.</p>
+      </details>
+      <details class="faq-item"><summary>10. Multiple wins?</summary>
+        <p>Yes, you can win every day.</p>
+      </details>
+      <details class="faq-item"><summary>11. Do Free Spins/bonuses count?</summary>
+        <ul>
+          <li>Yes, turnover from cash and bonus play on Pragmatic Play slots counts.</li>
+          <li>Other games/categories don’t count.</li>
+        </ul>
+      </details>
+      <details class="faq-item"><summary>12. Eligibility</summary>
+        <p>All players betting on Pragmatic Play slots during the month.</p>
+      </details>
+      <details class="faq-item"><summary>13. Wagering</summary>
+        <p>Cash prizes: x5 wagering before withdrawal.</p>
+      </details>
+      <details class="faq-item"><summary>14. Exchange</summary>
+        <p>Prizes are non-transferable and cannot be exchanged.</p>
+      </details>
+      <details class="faq-item"><summary>15. Terms & conditions</summary>
+        <ul>
+          <li>Rico.bet may disqualify fraud, multi-accounting, or integrity violations.</li>
+          <li>General Rico.bet Terms & Conditions apply.</li>
+        </ul>
+      </details>
+    `
+  }
+};
+
+const STORAGE_KEY = "ricobet.lang";
+function getLang(){ return localStorage.getItem(STORAGE_KEY) || "pt"; }
+function setLang(code){ localStorage.setItem(STORAGE_KEY, code); }
+
+/* ================= CONFIG ================= */
+const DATA_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmj-_miuOyDdV2cshF2M_g6aaVcNqtChyeg5PII28oaWQHPFVPiQzogRBLOATha5ug0Vh2t6HUgIIP/pub?output=csv";
+/* Countdown ends Oct 31, 2025 23:59:59 UTC-3 */
+const EVENT_END_TARGET = new Date("2025-10-31T23:59:59-03:00");
+const CURRENT_TZ = "Etc/GMT+3";       /* fixed UTC-3 */
+const CURRENCY = { symbol: "$", code: "USD" };
+
+/* ===== Avatars mapping (Top 20 fixed by rank) ===== */
+const FIXED_AVATARS = {
+  1:"https://ricomx.ft-crm.com/media-api/serve/30739191-4079-40cd-9154-f15c869c9f35_1.png",
+  2:"https://ricomx.ft-crm.com/media-api/serve/7e97b3d5-f53f-4211-b7d3-0c012a8e05ff_2.png",
+  3:"https://ricomx.ft-crm.com/media-api/serve/4120e46c-d810-46bb-924d-fb7769b56c0c_3.png",
+  4:"https://ricomx.ft-crm.com/media-api/serve/84bc31f3-69d6-47e9-950b-e557dd0cf4f6_4.png",
+  5:"https://ricomx.ft-crm.com/media-api/serve/d0692e25-3fdf-4004-af72-b572175fd49c_5.png",
+  6:"https://ricomx.ft-crm.com/media-api/serve/596c02c5-ad1c-42b7-9fb2-da6df154d35b_6.png",
+  7:"https://ricomx.ft-crm.com/media-api/serve/587f1afe-0e39-4f76-8715-48496452cfdf_7.png",
+  8:"https://ricomx.ft-crm.com/media-api/serve/6959ee62-92fa-4192-a2d6-f678a4934b4f_8.png",
+  9:"https://ricomx.ft-crm.com/media-api/serve/a450b16e-9310-4e83-ae66-ea71822a218b_9.png",
+  10:"https://ricomx.ft-crm.com/media-api/serve/24e07c3f-99fb-4bed-91f1-b91f1e0f7c8d_10.png",
+  11:"https://ricomx.ft-crm.com/media-api/serve/120d451f-a6dc-4f7b-b3f4-a1b5b8642443_11.png",
+  12:"https://ricomx.ft-crm.com/media-api/serve/65646abf-45f0-46b4-9c9c-f135f3b429e4_12.png",
+  13:"https://ricomx.ft-crm.com/media-api/serve/685901d2-f392-4d9f-83bf-b8f5ae4cf3bc_13.png",
+  14:"https://ricomx.ft-crm.com/media-api/serve/a3e8f9f5-851f-4048-b1ff-e7255de54266_14.png",
+  15:"https://ricomx.ft-crm.com/media-api/serve/92cde2cb-1afa-4c2e-b0f7-bf77f6b37a4a_15.png",
+  16:"https://ricomx.ft-crm.com/media-api/serve/1a77dbff-a836-4e7b-831f-77734198c725_16.png",
+  17:"https://ricomx.ft-crm.com/media-api/serve/ab17bec9-169e-4e99-9e2d-e560fd29403e_17.png",
+  18:"https://ricomx.ft-crm.com/media-api/serve/a698b757-2f99-49a7-95fb-68318d1637d6_18.png",
+  19:"https://ricomx.ft-crm.com/media-api/serve/ab8c0632-b1d4-41e5-be64-ba1e96d5ab1b_19.png",
+  20:"https://ricomx.ft-crm.com/media-api/serve/7c6d505e-174d-4214-9e93-bb7cdcc4098f_20.png"
+};
+function getAvatarUrl(rank, sheetUrl){ return rank<=20 ? (FIXED_AVATARS[rank]||sheetUrl||"") : (FIXED_AVATARS[20]||sheetUrl||""); }
+
+/* ===== Elements ===== */
+const $ = s=>document.querySelector(s);
+const rowsEl = $('#rows'), podiumEl = $('#podium'), boardDateEl = $('#boardDate');
+const datePicker = $('#datePicker'), searchInput = $('#searchInput'), searchBtn = $('#searchBtn'), searchResult = $('#searchResult');
+const langSelect = $('#langSelect');
+
+/* ===== Helpers ===== */
+const fmtMoney = n => `${CURRENCY.symbol} ${Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}`;
+const pad2 = n => String(n).padStart(2,'0');
+const toTZ = (d=new Date(), tz=CURRENT_TZ, opts={}) => new Intl.DateTimeFormat('en-CA', { timeZone: tz, ...opts });
+const ymdInTZ = d => toTZ(d, CURRENT_TZ, {year:'numeric',month:'2-digit',day:'2-digit'}).format(d);
+
+function normName(s){
+  return String(s||"").normalize("NFKD").replace(/[\u0300-\u036f]/g,"")
+    .replace(/[\u200B-\u200D\uFEFF]/g,"").replace(/\u00A0/g," ")
+    .replace(/\s+/g," ").trim().toLowerCase();
+}
+function maskMiddle4(name){
+  const s = String(name||''); if (s.length<=4){ if(s.length<=2) return s[0]+(s[1]?'*'+s[1]:''); return s[0]+"**"+s.slice(-1); }
+  const left = Math.floor((s.length-4)/2); return s.slice(0,left)+"****"+s.slice(left+4);
+}
+function bust(url){ return url ? url + (url.includes('?')?'&':'?') + 'v=' + Date.now() : ''; }
+function avatarStyle(url){ return url ? `style="background-image:url('${bust(url)}');"` : ""; }
+
+/* ===== Language apply ===== */
+function applyLang(code){
+  const L = I18N[code] || I18N.pt;
+  document.documentElement.lang = L.htmlLang || code;
+  $('#t.title').textContent = L.title;
+  $('#t.subtitle').textContent = L.subtitle;
+  $('#t.sub').textContent = L.sub;
+  $('#lab-d').textContent = L.labs.d;
+  $('#lab-h').textContent = L.labs.h;
+  $('#lab-m').textContent = L.labs.m;
+  $('#lab-s').textContent = L.labs.s;
+  $('#t.top20').textContent = L.top20;
+  $('#t.pickdate').firstChild.nodeValue = L.pickdate.replace('📅','') ? '📅 '+L.pickdate.split('📅').pop().trim() : L.pickdate;
+  $('#quickToday').textContent = L.today;
+  searchInput.placeholder = L.searchPh;
+  searchBtn.textContent = L.searchBtn;
+  $('#t.th-rank').textContent = L.thRank;
+  $('#t.th-player').textContent = L.thPlayer;
+  $('#t.th-turnover').textContent = L.thTurnover;
+  $('#t.cta-play').textContent = L.ctaPlay;
+  $('#t.cta-join').textContent = L.ctaJoin;
+  $('#t.support').childNodes[0].nodeValue = L.support + " ";
+  $('#t.support-link').textContent = L.supportLink;
+  $('#t.share-title').textContent = L.shareTitle;
+  $('#faqBox summary').textContent = L.faqTitle;
+  $('#faqBody').innerHTML = L.faqHTML;
+  // update share links with localized message
+  setShareLinks(L.shareText);
+}
+
+/* ===== Flip countdown ===== */
+(function countdown(){
+  const tiles = {
+    d: document.querySelector('.tile[data-unit="d"] .num'),
+    h: document.querySelector('.tile[data-unit="h"] .num'),
+    m: document.querySelector('.tile[data-unit="m"] .num'),
+    s: document.querySelector('.tile[data-unit="s"] .num'),
+  };
+  function tick(){
+    const now = new Date();
+    let diff = EVENT_END_TARGET - now; if (diff < 0) diff = 0;
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor((diff%86400000)/3600000);
+    const m = Math.floor((diff%3600000)/60000);
+    const s = Math.floor((diff%60000)/1000);
+    const vals = {d:String(d), h:pad2(h), m:pad2(m), s:pad2(s)};
+    for(const k of ['d','h','m','s']){
+      const el = tiles[k]; if(!el) continue;
+      if(el.textContent !== vals[k]){ el.textContent = vals[k]; el.parentElement.classList.remove('flip'); void el.parentElement.offsetWidth; el.parentElement.classList.add('flip'); }
+    }
+    requestAnimationFrame(()=>setTimeout(tick,250));
+  }
+  tick();
+})();
+
+/* ===== CSV parser ===== */
+function parseCSV(text){
+  const rows=[]; let cur=[], curVal='', inQ=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i], n=text[i+1];
+    if(c==='\"'){ if(inQ && n==='\"'){curVal+='\"'; i++;} else inQ=!inQ; }
+    else if(c===',' && !inQ){ cur.push(curVal); curVal=''; }
+    else if((c==='\n' || c==='\r') && !inQ){ if(curVal!=='' || c==='\n'){cur.push(curVal);curVal='';rows.push(cur);cur=[];} if(c==='\r'&&n==='\n'){i++;} }
+    else{ curVal+=c; }
+  }
+  if(curVal!=='' || cur.length){ cur.push(curVal); rows.push(cur); }
+  return rows;
+}
+
+/* ===== Data load ===== */
+let cache = [];
+let MIN_YMD = null, MAX_YMD = null;
+const dayIndex = new Map(); // ymd -> Map(normalizedName -> bestRow)
+
+async function loadCSV(){
+  const url = DATA_CSV_URL + (DATA_CSV_URL.includes('?')?'&':'?') + 't=' + Date.now();
+  const res = await fetch(url, {cache:'no-store'});
+  if(!res.ok) throw new Error('CSV fetch failed');
+  const text = await res.text();
+
+  const table = parseCSV(text).filter(r=>r.length);
+  if(table.length<2) return;
+  const header = table[0].map(h=>h.trim().toLowerCase());
+  const idx = {
+    date: header.indexOf('date'),
+    rank: header.indexOf('rank'),
+    name: header.indexOf('username'),
+    amount: header.indexOf('turnover'),
+    avatar: header.indexOf('avatar'),
+  };
+  const out = [];
+  for(let i=1;i<table.length;i++){
+    const r = table[i];
+    const date   = (r[idx.date]||'').trim();
+    const rank   = Number((r[idx.rank]||'').trim()||0);
+    const rawName= (r[idx.name]||'');
+    const name   = rawName;
+    const nKey   = normName(rawName);
+    const amtStr = String(r[idx.amount]||'0').replace(/[$,\s]/g,'');
+    const amount = Number(amtStr)||0;
+    const avatar = (r[idx.avatar]||'').trim();
+    if(!date || !nKey) continue;
+    out.push({date, rank, name, nKey, amount, avatar});
+  }
+  cache = out;
+
+  // Build per-day index
+  dayIndex.clear();
+  const dates = Array.from(new Set(cache.map(r=>r.date))).sort();
+  for(const d of dates){
+    const map = new Map();
+    const rows = cache.filter(x=>x.date===d);
+    const hasRank = rows.some(x=>x.rank>0);
+    const sorted = rows.slice().sort((a,b)=> hasRank ? (a.rank||999999)-(b.rank||999999) : (b.amount||0)-(a.amount||0));
+    for(let i=0;i<sorted.length;i++){
+      const r = sorted[i];
+      const compRank = hasRank ? (r.rank||i+1) : (i+1);
+      const prev = map.get(r.nKey);
+      if(!prev || compRank < prev.finalRank){
+        map.set(r.nKey, {...r, finalRank: compRank});
+      }
+    }
+    dayIndex.set(d, map);
+  }
+
+  MIN_YMD = dates[0]; MAX_YMD = dates[dates.length-1];
+  if(datePicker){ datePicker.min = MIN_YMD; datePicker.max = MAX_YMD; }
+}
+
+function getSortedDay(ymd){
+  const rows = cache.filter(r=>r.date===ymd);
+  if(!rows.length) return [];
+  const hasRank = rows.some(r=>r.rank>0);
+  return rows.slice().sort((a,b)=> hasRank ? (a.rank||999999)-(b.rank||999999) : (b.amount||0)-(a.amount||0));
+}
+
+/* ===== Render ===== */
+function renderDay(ymd){
+  const L = I18N[getLang()] || I18N.pt;
+  boardDateEl.textContent = ymd;
+  rowsEl.innerHTML = '';
+  podiumEl.innerHTML = '';
+
+  const sorted = getSortedDay(ymd);
+  if (!sorted.length){
+    rowsEl.innerHTML = `<div class="row"><div></div><div>${L.noResults(ymd)}</div><div></div></div>`;
+    return;
+  }
+
+  // Podium 1–3 (center = #1, left = #2, right = #3)
+  const top3 = sorted.slice(0,3);
+  [1,0,2].forEach((i)=>{
+    const r = top3[i]; if(!r) return;
+    const cls = i===0?'pod--1' : i===1?'pod--2':'pod--3';
+    const shownRank = r.rank>0 ? r.rank : (i+1);
+    const avatarUrlTop = getAvatarUrl(shownRank, r.avatar);
+    podiumEl.insertAdjacentHTML('beforeend', `
+      <div class="pod ${cls}">
+        <div class="pod-rank t${shownRank}">
+          <span class="trophy-icon">🏆</span> #${shownRank}
+        </div>
+        <div class="pod-avatar" ${avatarStyle(avatarUrlTop)}></div>
+        <div class="pod-name">${maskMiddle4(r.name)}</div>
+        <div class="pod-amt">${fmtMoney(r.amount)}</div>
+      </div>
+    `);
+  });
+
+  // List 4–20
+  sorted.slice(3,20).forEach((r, idx)=>{
+    const rankShown = r.rank>0 ? r.rank : (idx+4);
+    const avatarUrlRow = getAvatarUrl(rankShown, r.avatar);
+    rowsEl.insertAdjacentHTML('beforeend', `
+      <div class="row" data-key="${r.nKey}">
+        <div><span class="rank">#${rankShown}</span></div>
+        <div class="player">
+          <span class="avatar" ${avatarStyle(avatarUrlRow)}></span>
+          <span class="mask">${maskMiddle4(r.name)}</span>
+        </div>
+        <div class="payout">${fmtMoney(r.amount)}</div>
+      </div>
+    `);
+  });
+}
+
+/* ===== Search (pin result) ===== */
+function doSearch(){
+  const L = I18N[getLang()] || I18N.pt;
+  const q = (searchInput.value||'').trim();
+  const qKey = normName(q); searchResult.textContent='';
+  if(!qKey) return;
+
+  const ymd = datePicker.value;
+  const idx = dayIndex.get(ymd);
+  if(!idx){ searchResult.textContent = L.searchNoData(ymd); return; }
+
+  const row = idx.get(qKey);
+  if(!row){ searchResult.textContent = L.searchNoMatch(q, ymd); return; }
+
+  const finalRank = row.finalRank;
+  if(finalRank <= 20){
+    searchResult.textContent = L.searchTop(row.name, finalRank);
+    const hit = Array.from(rowsEl.children).find(e => e.dataset.key === row.nKey);
+    if(hit){ rowsEl.querySelectorAll('.hit').forEach(e=>e.classList.remove('hit')); hit.classList.add('hit'); hit.scrollIntoView({behavior:'smooth',block:'center'}); }
+  }else{
+    searchResult.textContent = L.searchBelow(row.name, finalRank);
+    const existing = rowsEl.querySelector('.pin'); if(existing) existing.remove();
+    const avatarUrlPin = getAvatarUrl(finalRank, row.avatar);
+    rowsEl.insertAdjacentHTML('beforeend', `
+      <div class="row pin">
+        <div><span class="rank">#${finalRank}</span></div>
+        <div class="player">
+          <span class="avatar" ${avatarStyle(avatarUrlPin)}></span>
+          <span class="mask">${maskMiddle4(row.name)}</span>
+        </div>
+        <div class="payout">${fmtMoney(row.amount)}</div>
+      </div>
+    `);
+    rowsEl.lastElementChild.scrollIntoView({behavior:'smooth',block:'end'});
+  }
+}
+
+/* ===== Share links (localized message) ===== */
+function setShareLinks(textMsg){
+  const shareUrl = location.href.split('#')[0];
+  $('#shareTg').href = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(textMsg)}`;
+  $('#shareWa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(textMsg + ' 👉 ' + shareUrl)}`;
+}
+
+/* ===== Init ===== */
+(async function init(){
+  // init language
+  const initLang = getLang();
+  langSelect.value = initLang;
+  applyLang(initLang);
+
+  await loadCSV();
+
+  // default date = today (UTC-3) then clamp to data range
+  const today = (()=>{ const d = new Date(); return ymdInTZ(d); })();
+  datePicker.value = (today < MIN_YMD) ? MIN_YMD : (today > MAX_YMD ? MAX_YMD : today);
+  renderDay(datePicker.value);
+
+  datePicker.addEventListener('change', ()=> renderDay(datePicker.value));
+  $('#quickToday').addEventListener('click', ()=>{
+    const y = (()=>{ const d = new Date(); return ymdInTZ(d); })();
+    const c = (y < MIN_YMD)?MIN_YMD:(y > MAX_YMD?MAX_YMD:y);
+    datePicker.value=c; renderDay(c);
+  });
+
+  searchBtn.addEventListener('click', doSearch);
+  searchInput.addEventListener('keydown', e=>{ if(e.key==='Enter') doSearch(); });
+
+  // language switching
+  langSelect.addEventListener('change', ()=>{
+    const sel = langSelect.value;
+    setLang(sel);
+    applyLang(sel);
+    renderDay(datePicker.value); // re-render static labels like headers; data unaffected
+  });
+})();
+</script>
+</body>
+</html>
