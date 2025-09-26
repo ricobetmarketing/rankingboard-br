@@ -29,55 +29,36 @@
   }
   .wrap{max-width:1080px; margin:24px auto 46px; padding:0 16px}
 
-  /* topbar: logo left, language right */
+  /* ===== Topbar ===== */
   .topbar{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px}
-  .logo-img{height:36px;width:auto;display:block}
-  @media (max-width:520px){ .logo-img{height:28px} }
+.logo-img{
+  height:36px;
+  width:auto;
+  display:block;
+  /* two subtle layers = softer edge without looking “bulky” */
+  filter:
+    drop-shadow(0 1px 2px rgba(0,0,0,.22))
+    drop-shadow(0 6px 14px rgba(0,0,0,.15));
+}
+@media (max-width:520px){
+  .logo-img{ height:28px }
+}
 
-  .lang-switch{
-    display:inline-flex; align-items:center; gap:8px; font-weight:800;
-    background:#17183a; border:1px solid rgba(255,255,255,.18);
-    padding:6px 10px; border-radius:12px;
-  }
-  .lang-switch select{
-    appearance:none; background:transparent; border:0; color:#fff; font-weight:900; outline:none; cursor:pointer;
-  }
+  .lang-switch{display:inline-flex; align-items:center; gap:8px; font-weight:800; background:#17183a; border:1px solid rgba(255,255,255,.18); padding:6px 10px; border-radius:12px}
+  .lang-switch select{appearance:none; background:transparent; border:0; color:#fff; font-weight:900; outline:none; cursor:pointer}
 
+  /* ===== Cards & common ===== */
   .card{position:relative; border:1px solid var(--ring); border-radius:18px; background:rgba(18,17,37,.86)}
-  .glow::before{
-    content:""; position:absolute; inset:-2px; border-radius:20px; padding:2px;
-    background:linear-gradient(90deg,var(--g1),var(--g2),var(--a3),var(--g1)); background-size:400% 100%;
-    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor; mask-composite:exclude; animation:shine 9s linear infinite; pointer-events:none;
-  }
-  @keyframes shine{0%{background-position:0% 0}100%{background-position:400% 0}}
 
-  /* ===== HERO ===== */
-  .hero.card{padding:18px; text-align:center}
-  /* Title stays ALWAYS English per request */
-  .title-3d{
-    margin:2px 0 4px;
-    font-weight:900; letter-spacing:.8px; text-transform:uppercase; color:#fff;
-    text-shadow:0 0 8px #7873f5, 0 0 14px #ff6ec4;
-    animation:glowTitle 3s ease-in-out infinite alternate, pop .6s ease-out both;
-    font-size:42px; line-height:1.05;
+  /* ===== HERO (borderless) ===== */
+  .hero{padding:0; text-align:center; background:transparent; border:0}
+  .hero-banner-wrap{
+    position:relative; display:inline-block; margin:0 auto 10px;
+    border-radius:14px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.35);
   }
-  @keyframes glowTitle{from{text-shadow:0 0 6px #7873f5,0 0 12px #ff6ec4}to{text-shadow:0 0 14px #ff6ec4,0 0 24px #7873f5}}
-  @keyframes pop{0%{transform:translateY(6px) scale(.98);opacity:0}100%{transform:translateY(0) scale(1);opacity:1}}
-  @media (max-width:720px){ .title-3d{font-size:34px} }
-  @media (max-width:520px){ .title-3d{font-size:28px} }
+  .hero-banner{display:block; width:auto; height:auto; max-width:100%}
 
-  .hero-subtitle{
-    margin:6px auto 8px; font-weight:800; font-size:28px;
-    background:linear-gradient(90deg,var(--g1),var(--a3),var(--g2),var(--g1));
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    background-size:300% 100%; animation:shine 6s linear infinite
-  }
-  @media (max-width:720px){ .hero-subtitle{font-size:22px} }
-  @media (max-width:520px){ .hero-subtitle{font-size:18px} }
-  .sub{margin:12px 0 0; color:var(--mut)}
-
-  /* ==== COUNTDOWN (one row) ==== */
+  /* ==== COUNTDOWN ==== */
   .flipbar{
     display:grid; grid-template-columns:repeat(4, 1fr);
     gap:14px; justify-items:stretch; align-items:stretch; margin-top:10px
@@ -94,7 +75,9 @@
   @keyframes flip{0%{transform:rotateX(0)}50%{transform:rotateX(-60deg)}100%{transform:rotateX(0)}}
   @media (max-width:520px){ .tile{height:78px} .num{font-size:26px} }
 
-  /* ===== TOP 3 ===== */
+  .sub{margin:12px 0 0; color:var(--mut); font-weight:600;}
+
+  /* ===== TOP 3 Podium ===== */
   .podium{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:end;margin:16px 0 6px}
   .pod{position:relative;border-radius:16px;text-align:center;padding:16px 10px 24px;
     background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.03));
@@ -109,7 +92,7 @@
   .pod-name{font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}
   .pod-amt{margin-top:2px;font-weight:900;font-variant-numeric:tabular-nums;font-size:12px}
 
-  /* ===== LIST ===== */
+  /* ===== LIST (#4–#20) ===== */
   .panel.card{padding:14px}
   .panel-head{display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; margin-bottom:8px}
   .title{margin:0; font-size:18px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
@@ -135,9 +118,53 @@
   .hit{outline:2px solid var(--a3); border-radius:10px; animation:blink 1.2s ease-in-out 2}
 
   .pin{position:sticky;bottom:0;background:#1d1e3f;border-top:2px dashed rgba(255,255,255,.25)}
+  .pin .rank{background:linear-gradient(180deg,#4a2,#283);border-color:#7df5b1}
+
+  .cta-row{margin-top:18px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center; align-items:center}
   .btn{display:inline-flex; align-items:center; gap:8px; padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:800; font-size:14px; color:#fff; border:1px solid rgba(255,255,255,.25)}
   .btn--pri{background:linear-gradient(90deg,var(--g1),var(--g2))}
   .btn--dark{background:#1a1b34}
+
+  /* PLAY NOW pulse (subtle heartbeat + soft ring) */
+#ctaPlay{
+  position:relative;
+  animation:ctaPulse 2.2s ease-in-out infinite;
+  transform-origin:center;
+  box-shadow:0 0 0 0 rgba(120,115,245,.35);
+}
+#ctaPlay::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:12px;
+  box-shadow:0 0 0 0 rgba(120,115,245,.55);
+  animation:ctaRing 2.2s ease-in-out infinite;
+  pointer-events:none;
+}
+
+/* heartbeat scale */
+@keyframes ctaPulse{
+  0%,100%{ transform:scale(1) }
+  50%{ transform:scale(1.045) }   /* gentle bump */
+}
+
+/* soft expanding glow ring */
+@keyframes ctaRing{
+  0%  { box-shadow:0 0 0 0 rgba(120,115,245,.55) }
+  70% { box-shadow:0 0 0 18px rgba(120,115,245,0) }
+  100%{ box-shadow:0 0 0 0 rgba(120,115,245,0) }
+}
+
+/* pause the animation when user hovers or taps-and-holds */
+#ctaPlay:hover,
+#ctaPlay:active{ animation-play-state:paused }
+#ctaPlay:hover::after,
+#ctaPlay:active::after{ animation-play-state:paused }
+
+/* accessibility: respect reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  #ctaPlay, #ctaPlay::after{ animation:none }
+}
 
   .support{margin-top:10px; text-align:center; color:#cfd3ff}
   .support a{color:#a5b0ff; font-weight:800; text-decoration:underline}
@@ -160,12 +187,15 @@
   .faq-item{background:#141534; border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:10px 12px; margin:8px 0}
   .faq-item > summary{cursor:pointer; font-weight:800}
   .faq-item p{margin:8px 0 0 0; color:#dfe3ff}
+
+  /* Make all share icons white */
+  .sharebtn img{filter: drop-shadow(0 1px 0 rgba(0,0,0,.35)) brightness(0) invert(1)}
 </style>
 </head>
 <body>
   <div class="wrap">
     <div class="topbar" aria-label="RicoBet">
-      <img src="https://ricobr.ft-crm.com/media-api/serve/c5570255-af15-4915-8b16-907d5bc7f999_Rico_Logo.png" alt="RicoBet" class="logo-img" />
+      <img src="https://ricomx.ft-crm.com/media-api/serve/5025452a-eb77-4d86-b80c-2949bdd6694f_Logo_transparent_2.png" alt="RicoBet" class="logo-img" />
       <div class="lang-switch">
         🌐
         <select id="langSelect" aria-label="Language">
@@ -175,31 +205,36 @@
       </div>
     </div>
 
-    <!-- HERO -->
-    <section class="hero card glow">
-      <h1 class="title-3d">Spins Of Glory</h1><!-- fixed English -->
-      <div class="hero-subtitle" data-i18n="subtitle">Daily Prizes of USD 5,000</div>
+    <!-- HERO (borderless) -->
+    <section class="hero">
+      <div class="hero-banner-wrap">
+        <img
+          class="hero-banner"
+          src="https://ricomx.ft-crm.com/media-api/serve/001ba47d-224e-4385-bb7a-6a3bc2d79ca4_Spins_of_Glory..png"
+          alt="Spins Of Glory" loading="eager">
+      </div>
 
       <!-- Countdown -->
       <div class="flipbar" aria-label="Countdown">
-        <div class="tile" data-unit="d"><div class="num">00</div><div class="lab" data-i18n="lab-d">DAYS</div></div>
+        <div class="tile" data-unit="d"><div class="num">00</div><div class="lab" data-i18n="lab-d">DIAS</div></div>
         <div class="tile" data-unit="h"><div class="num">00</div><div class="lab" data-i18n="lab-h">HRS</div></div>
         <div class="tile" data-unit="m"><div class="num">00</div><div class="lab" data-i18n="lab-m">MIN</div></div>
-        <div class="tile" data-unit="s"><div class="num">00</div><div class="lab" data-i18n="lab-s">SEC</div></div>
+        <div class="tile" data-unit="s"><div class="num">00</div><div class="lab" data-i18n="lab-s">SEG</div></div>
       </div>
-      <p class="sub" data-i18n="sub">Play in Pragmatic Play Slot Games to win the daily prizes !</p>
+
+      <p class="sub" data-i18n="sub">Jogue nos slots Pragmatic Play para ganhar prêmios diários!</p>
     </section>
 
     <!-- WINNERS -->
-    <section class="panel card glow" style="margin-top:18px">
+    <section class="panel card" style="margin-top:18px">
       <div class="panel-head">
         <h2 class="title">🏆 <span data-i18n="top20">Top 20</span> • <span id="boardDate">—</span></h2>
         <div class="filters">
-          <label class="chip">📅&nbsp;<span data-i18n="pickdate">Pick a date</span>
+          <label class="chip">📅&nbsp;<span data-i18n="pickdate">Escolha a data</span>
             <input id="datePicker" type="date" style="background:transparent;border:0;color:#fff;outline:none"></label>
-          <span class="chip" id="quickToday" data-i18n="today" style="cursor:pointer">📆 Today</span>
-          <input class="search-input" id="searchInput" type="text" data-i18n-placeholder="searchPh" placeholder="Search your full username…" />
-          <button class="search-btn" id="searchBtn" data-i18n="searchBtn">Search</button>
+          <span class="chip" id="quickToday" data-i18n="today" style="cursor:pointer">📆 Hoje</span>
+          <input class="search-input" id="searchInput" type="text" data-i18n-placeholder="searchPh" placeholder="Busque seu nome completo…" />
+          <button class="search-btn" id="searchBtn" data-i18n="searchBtn">Buscar</button>
           <span id="searchResult" style="margin-left:6px;"></span>
         </div>
       </div>
@@ -211,7 +246,7 @@
       <div class="board">
         <div class="row head">
           <div data-i18n="thRank">#</div>
-          <div data-i18n="thPlayer">Player</div>
+          <div data-i18n="thPlayer">Jogador</div>
           <div style="text-align:right" data-i18n="thTurnover">Turnover</div>
         </div>
         <div id="rows" class="viewport" aria-live="polite"></div>
@@ -219,23 +254,26 @@
     </section>
 
     <!-- CTAs -->
-    <div class="cta-row">
-      <a class="btn btn--pri" href="https://www.rico.bet/" target="_blank" rel="noopener" data-i18n="ctaPlay">▶ PLAY NOW</a>
-      <a class="btn btn--dark" href="https://t.me/+55A937ipq8xhMzJl" target="_blank" rel="noopener" data-i18n="ctaJoin">👥 JOIN COMMUNITY</a>
-    </div>
+  <div class="cta-row">
+  <a class="btn btn--pri" id="ctaPlay"
+     href="https://www.ricobet.net/slotsgame?sub=pragmatic" target="_blank" rel="noopener" data-i18n="ctaPlay">▶ JOGAR AGORA</a>
+  <a class="btn btn--dark"
+     href="https://t.me/+dbHFnvBjpCAwYWQ1" target="_blank" rel="noopener" data-i18n="ctaJoin">👥 COMUNIDADE</a>
+</div>
+
     <p class="support">
-      <span data-i18n="supportLead">Need help? Message our support on Telegram and we’ll assist you:</span>
-      <a href="https://t.me/+55A937ipq8xhMzJl" target="_blank" rel="noopener" data-i18n="supportLink">Contact Support</a>
+      <span data-i18n="supportLead">Precisa de ajuda? Fale com nosso suporte no Telegram e nós ajudaremos:</span>
+      <a href="https://t.me/ricobetbr2bot" target="_blank" rel="noopener" data-i18n="supportLink">Falar com o Suporte</a>
     </p>
 
     <!-- Share -->
     <div class="sharebar">
-      <b data-i18n="shareTitle">SHARE WITH YOUR FRIENDS</b>
+      <b data-i18n="shareTitle">COMPARTILHE COM SEUS AMIGOS</b>
       <div class="share-actions">
-        <a id="shareTg" class="sharebtn tg" data-i18n-title="shareTg" title="Telegram" target="_blank" rel="noopener">
+        <a id="shareTg" class="sharebtn tg" data-i18n-title="shareTg" title="Compartilhar no Telegram" target="_blank" rel="noopener">
           <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram">
         </a>
-        <a id="shareWa" class="sharebtn wa" data-i18n-title="shareWa" title="WhatsApp" target="_blank" rel="noopener">
+        <a id="shareWa" class="sharebtn wa" data-i18n-title="shareWa" title="Compartilhar no WhatsApp" target="_blank" rel="noopener">
           <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp">
         </a>
       </div>
@@ -244,69 +282,92 @@
     <div class="divider"></div>
 
     <!-- FAQ -->
-    <details class="faq-panel card glow" id="faqBox">
-      <summary data-i18n="faqTitle">FAQ &amp; Terms</summary>
+    <details class="faq-panel card" id="faqBox">
+      <summary data-i18n="faqTitle">FAQ &amp; Termos</summary>
       <div class="faq-body" id="faqBody">
         <!-- English FAQ seeded; Portuguese injected by JS -->
-        <details class="faq-item"><summary>1. What is this event about?</summary>
-          <p>This is a daily leaderboard competition on Pragmatic Play games, running from 1st October to 31st October 2025. Players compete based on their daily turnover. The higher your turnover, the higher you rank, and the better the prize you’ll receive.</p>
-        </details>
-        <details class="faq-item"><summary>2. How do I participate?</summary>
-          <p>Simply play any Pragmatic Play slot games during the event period. Your turnover (total bets) will be tracked automatically.</p>
-        </details>
-        <details class="faq-item"><summary>3. How are prizes distributed?</summary>
-          <p>Each day, the Top 20 players by turnover win a share of the $5,000 daily prize pool:</p>
-          <ul class="prize-list">
-            <li>1st Place: $1,500</li>
-            <li>2nd–5th: $500 each</li>
-            <li>6th–10th: $200 each</li>
-            <li>11th–20th: $50 each</li>
-          </ul>
-        </details>
-        <details class="faq-item"><summary>4. What is the total prize pool?</summary>
-          <p>The event runs for the month with a total pool of $150,000, split into $5,000 daily prizes.</p>
-        </details>
-        <details class="faq-item"><summary>5. When does the leaderboard reset?</summary>
-          <p>The leaderboard resets daily at 00:00. Each new day starts a fresh competition.</p>
-        </details>
-        <details class="faq-item"><summary>6. How often is the leaderboard updated?</summary>
-          <p>The leaderboard is updated every 8 hours.</p>
-        </details>
-        <details class="faq-item"><summary>7. How will I know my rank?</summary>
-          <p>You can check the live leaderboard here. If you’re not in the Top 20, search your username to see your current rank.</p>
-        </details>
-        <details class="faq-item"><summary>8. When will I receive my prize?</summary>
-          <p>Daily leaderboard prizes will be distributed the next day at 12:00 PM.</p>
-        </details>
-        <details class="faq-item"><summary>9. What happens if there is a tie?</summary>
-          <p>If two players have the same turnover, the player who reached it earlier in the day will rank higher.</p>
-        </details>
-        <details class="faq-item"><summary>10. Can I win multiple days?</summary>
-          <p>Yes. You can win every day during the event — there are no limits.</p>
-        </details>
-        <details class="faq-item"><summary>11. Are Free Spins or bonuses included?</summary>
-          <ul>
-            <li>Yes, turnover from both cash and bonus play on Pragmatic Play slots counts.</li>
-            <li>Other slot games and game categories do not count.</li>
-          </ul>
-        </details>
-        <details class="faq-item"><summary>12. Who is eligible?</summary>
-          <p>All players who place bets on Pragmatic Play slot games throughout the month.</p>
-        </details>
-        <details class="faq-item"><summary>13. Do wagering requirements apply to prizes?</summary>
-          <p>Cash prizes: x5 wagering needed before any withdrawal can be made.</p>
-        </details>
-        <details class="faq-item"><summary>14. Can prizes be exchanged for other rewards?</summary>
-          <p>No. Prizes are non-transferable and cannot be exchanged.</p>
-        </details>
-        <details class="faq-item"><summary>15. Terms &amp; conditions</summary>
-          <ul>
-            <li>Rico.bet reserves the right to disqualify any players found to be engaging in fraud, scams, multiple accounts, or any activity that violates the integrity of the promotion.</li>
-            <li>All other Rico.bet General Terms & Conditions apply.</li>
-          </ul>
-        </details>
+
+       <details class="faq-item"><summary>1. What is this event about?</summary>
+  <p>This is a daily leaderboard competition on Pragmatic Play games, running from 1st October to 31st October 2025. Players compete based on their daily turnover. The higher your turnover, the higher you rank, and the better the prize you’ll receive.</p>
+</details>
+
+<details class="faq-item"><summary>2. How do I participate?</summary>
+  <ul>
+    <li>Simply play any Pragmatic Play slot games during the event period.</li>
+    <li>Your turnover (total bets) will be tracked automatically.</li>
+  </ul>
+</details>
+
+<details class="faq-item"><summary>3. How are prizes distributed?</summary>
+  <p>Each day, the Top 20 players by turnover win a share of the $5,000 daily prize pool:</p>
+  <ul>
+    <li>1st Place: $1,500</li>
+    <li>2nd–5th: $500 each</li>
+    <li>6th–10th: $200 each</li>
+    <li>11th–20th: $50 each</li>
+  </ul>
+</details>
+
+<details class="faq-item"><summary>4. What is the total prize pool?</summary>
+  <p>The event runs for the month with a total pool of $150,000, split into $5,000 daily prizes.</p>
+</details>
+
+<details class="faq-item"><summary>5. When does the leaderboard reset?</summary>
+  <p>The leaderboard resets daily at 00:00. Each new day starts a fresh competition.</p>
+</details>
+
+<details class="faq-item"><summary>6. How often is the leaderboard updated?</summary>
+  <p>The leaderboard is updated every 8 hours.</p>
+</details>
+
+<details class="faq-item"><summary>7. How will I know my rank?</summary>
+  <ul>
+    <li>You can check the live leaderboard on our site’s inbox.</li>
+    <li>If you’re not in the Top 20, you can still see your current ranking by entering your username.</li>
+  </ul>
+</details>
+
+<details class="faq-item"><summary>8. When will I receive my prize?</summary>
+  <p>Daily leaderboard prizes will be distributed the next day at 12:00 PM. You’ll see your winnings automatically credited to your account.</p>
+</details>
+
+<details class="faq-item"><summary>9. What happens if there is a tie?</summary>
+  <p>If two players have the same turnover, the player who reached it earlier in the day will rank higher.</p>
+</details>
+
+<details class="faq-item"><summary>10. Can I win multiple days?</summary>
+  <p>Yes. You can win every day during the event — there are no limits.</p>
+</details>
+
+<details class="faq-item"><summary>11. Are Free Spins or bonuses included in the leaderboard?</summary>
+  <ul>
+    <li>Yes, turnover from both cash and bonus play on Pragmatic Play slots counts.</li>
+    <li>Other slot games and game categories do not count.</li>
+  </ul>
+</details>
+
+<details class="faq-item"><summary>12. Who is eligible?</summary>
+  <p>All players who place bets on Pragmatic Play slot games throughout the month.</p>
+</details>
+
+<details class="faq-item"><summary>13. Do wagering requirements apply to prizes?</summary>
+  <p>Cash prizes: x5 wagering needed before any withdrawal can be made.</p>
+</details>
+
+<details class="faq-item"><summary>14. Can prizes be exchanged for other rewards?</summary>
+  <p>No. Prizes are non-transferable and cannot be exchanged.</p>
+</details>
+
+<details class="faq-item"><summary>15. Terms &amp; conditions</summary>
+  <ul>
+    <li>Rico.bet reserves the right to disqualify any players found to be engaging in fraud, scams, multiple accounts, or any activity that violates the integrity of the promotion.</li>
+    <li>All other Rico.bet General Terms &amp; Conditions apply.</li>
+  </ul>
+</details>
+
       </div>
     </details>
+
   </div>
 
 <script>
@@ -314,7 +375,6 @@
 const I18N = {
   pt: {
     htmlLang: "pt-BR",
-    subtitle: "Prêmios Diários de USD 5.000",
     sub: "Jogue nos slots Pragmatic Play para ganhar prêmios diários!",
     "lab-d": "DIAS", "lab-h": "HRS", "lab-m": "MIN", "lab-s": "SEG",
     top20: "Top 20",
@@ -329,7 +389,7 @@ const I18N = {
     searchBelow: (name,rank)=>`ℹ️ ${name} está em #${rank} hoje.`,
     noResults: (ymd)=>`Sem resultados para ${ymd}.`,
     ctaPlay: "▶ JOGAR AGORA",
-    ctaJoin: "👥 ENTRAR NA COMUNIDADE",
+    ctaJoin: "👥 COMUNIDADE",
     supportLead: "Precisa de ajuda? Fale com nosso suporte no Telegram e nós ajudaremos:",
     supportLink: "Falar com o Suporte",
     shareTitle: "COMPARTILHE COM SEUS AMIGOS",
@@ -338,68 +398,89 @@ const I18N = {
     shareText: "Estou em busca da glória nos rolos… junte-se à disputa por prêmios diários!",
     faqTitle: "FAQ & Termos",
     faqHTML: `
-      <details class="faq-item"><summary>1. Sobre o evento</summary>
-        <p>Competição diária de leaderboard em jogos Pragmatic Play, de 1 a 31 de outubro de 2025. A classificação é pelo turnover diário.</p>
-      </details>
-      <details class="faq-item"><summary>2. Como participar?</summary>
-        <p>Jogue qualquer slot da Pragmatic Play no período do evento. Seu turnover será contabilizado automaticamente.</p>
-      </details>
-      <details class="faq-item"><summary>3. Distribuição de prêmios</summary>
-        <p>Todos os dias, os Top 20 dividem o prêmio diário de $5.000:</p>
-        <ul class="prize-list">
-          <li>1º lugar: $1.500</li>
-          <li>2º–5º: $500 cada</li>
-          <li>6º–10º: $200 cada</li>
-          <li>11º–20º: $50 cada</li>
-        </ul>
-      </details>
-      <details class="faq-item"><summary>4. Prize pool total</summary>
-        <p>$150.000 no mês, dividido em $5.000 por dia.</p>
-      </details>
-      <details class="faq-item"><summary>5. Reset do ranking</summary>
-        <p>Reinicia diariamente às 00:00.</p>
-      </details>
-      <details class="faq-item"><summary>6. Atualizações</summary>
-        <p>Atualizado a cada 8 horas.</p>
-      </details>
-      <details class="faq-item"><summary>7. Como vejo minha posição?</summary>
-        <p>Veja o leaderboard. Fora do Top 20, busque seu usuário para ver a colocação.</p>
-      </details>
-      <details class="faq-item"><summary>8. Pagamento do prêmio</summary>
-        <p>No dia seguinte às 12:00.</p>
-      </details>
-      <details class="faq-item"><summary>9. Empates</summary>
-        <p>Se houver empate, quem alcançou primeiro fica acima.</p>
-      </details>
-      <details class="faq-item"><summary>10. Ganhar em vários dias</summary>
-        <p>Sim, você pode ganhar todos os dias.</p>
-      </details>
-      <details class="faq-item"><summary>11. Free Spins e bônus contam?</summary>
-        <ul>
-          <li>Sim, turnover em dinheiro e bônus nos slots da Pragmatic Play conta.</li>
-          <li>Outros jogos/categorias não contam.</li>
-        </ul>
-      </details>
-      <details class="faq-item"><summary>12. Elegibilidade</summary>
-        <p>Todos que apostarem nos slots da Pragmatic Play durante o mês.</p>
-      </details>
-      <details class="faq-item"><summary>13. Requisitos de apostas</summary>
-        <p>Prêmios em dinheiro: wagering x5 antes de qualquer saque.</p>
-      </details>
-      <details class="faq-item"><summary>14. Troca de prêmios</summary>
-        <p>Prêmios são intransferíveis e não podem ser trocados.</p>
-      </details>
-      <details class="faq-item"><summary>15. Termos & condições</summary>
-        <ul>
-          <li>A Rico.bet pode desclassificar fraudes, múltiplas contas ou violações.</li>
-          <li>Aplicam-se os Termos & Condições gerais da Rico.bet.</li>
-        </ul>
-      </details>
+
+     <details class="faq-item"><summary>1. Sobre o que é este evento?</summary>
+  <p>É uma competição diária de ranking em jogos da Pragmatic Play, de 1 a 31 de outubro de 2025. Os jogadores competem com base no turnover diário. Quanto maior o turnover, maior a posição no ranking e melhor o prêmio.</p>
+</details>
+
+<details class="faq-item"><summary>2. Como participar?</summary>
+  <ul>
+    <li>Jogue qualquer slot da Pragmatic Play durante o período do evento.</li>
+    <li>Seu turnover (apostas totais) será rastreado automaticamente.</li>
+  </ul>
+</details>
+
+<details class="faq-item"><summary>3. Como os prêmios são distribuídos?</summary>
+  <p>Todos os dias, os 20 melhores jogadores por turnover ganham parte do prêmio diário de $5.000:</p>
+  <ul>
+    <li>1º lugar: $1.500</li>
+    <li>2º–5º lugar: $500 cada</li>
+    <li>6º–10º lugar: $200 cada</li>
+    <li>11º–20º lugar: $50 cada</li>
+  </ul>
+</details>
+
+<details class="faq-item"><summary>4. Qual é o prêmio total?</summary>
+  <p>O evento dura um mês com um total de $150.000, dividido em prêmios diários de $5.000.</p>
+</details>
+
+<details class="faq-item"><summary>5. Quando o ranking é resetado?</summary>
+  <p>Todos os dias à 00:00. Cada dia começa uma nova competição.</p>
+</details>
+
+<details class="faq-item"><summary>6. Com que frequência o ranking é atualizado?</summary>
+  <p>A cada 8 horas.</p>
+</details>
+
+<details class="faq-item"><summary>7. Como saberei minha posição?</summary>
+  <ul>
+    <li>Você pode verificar no ranking ao vivo na caixa de entrada do site.</li>
+    <li>Mesmo fora do Top 20, é possível ver sua posição inserindo seu usuário.</li>
+  </ul>
+</details>
+
+<details class="faq-item"><summary>8. Quando receberei meu prêmio?</summary>
+  <p>Os prêmios diários são creditados automaticamente no dia seguinte às 12:00 PM.</p>
+</details>
+
+<details class="faq-item"><summary>9. E se houver empate?</summary>
+  <p>O jogador que atingir o turnover primeiro terá a posição mais alta.</p>
+</details>
+
+<details class="faq-item"><summary>10. Posso ganhar em vários dias?</summary>
+  <p>Sim. Você pode ganhar todos os dias durante o evento — não há limites.</p>
+</details>
+
+<details class="faq-item"><summary>11. Giros Grátis ou bônus contam no ranking?</summary>
+  <ul>
+    <li>Sim, o turnover de dinheiro real e bônus em slots da Pragmatic Play conta.</li>
+    <li>Outros jogos não contam.</li>
+  </ul>
+</details>
+
+<details class="faq-item"><summary>12. Quem pode participar?</summary>
+  <p>Todos os jogadores que apostarem em slots da Pragmatic Play durante o mês.</p>
+</details>
+
+<details class="faq-item"><summary>13. Há requisitos de aposta?</summary>
+  <p>Prêmios em dinheiro: exigem x5 de aposta antes de qualquer saque.</p>
+</details>
+
+<details class="faq-item"><summary>14. Os prêmios podem ser trocados?</summary>
+  <p>Não. São intransferíveis e não podem ser trocados.</p>
+</details>
+
+<details class="faq-item"><summary>15. Termos e Condições</summary>
+  <ul>
+    <li>A Rico.bet se reserva o direito de desclassificar jogadores por fraude, múltiplas contas ou atividades suspeitas.</li>
+    <li>Também se aplicam os Termos e Condições gerais da Rico.bet.</li>
+  </ul>
+</details>
+
     `
   },
   en: {
     htmlLang: "en",
-    subtitle: "Daily Prizes of USD 5,000",
     sub: "Play Pragmatic Play slot games to win the daily prizes!",
     "lab-d": "DAYS", "lab-h": "HRS", "lab-m": "MIN", "lab-s": "SEC",
     top20: "Top 20",
@@ -428,13 +509,13 @@ const I18N = {
 
 const STORAGE_KEY = "ricobet.lang";
 
-/* ===== Page config (unchanged) ===== */
+/* ===== Data & settings ===== */
 const DATA_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmj-_miuOyDdV2cshF2M_g6aaVcNqtChyeg5PII28oaWQHPFVPiQzogRBLOATha5ug0Vh2t6HUgIIP/pub?output=csv";
 const EVENT_END_TARGET = new Date("2025-10-31T23:59:59-03:00");
 const CURRENT_TZ = "Etc/GMT+3";
 const CURRENCY = { symbol: "$", code: "USD" };
 
-/* ===== Avatars ===== */
+/* ===== Avatars mapping ===== */
 const FIXED_AVATARS = {
   1:"https://ricomx.ft-crm.com/media-api/serve/30739191-4079-40cd-9154-f15c869c9f35_1.png",
   2:"https://ricomx.ft-crm.com/media-api/serve/7e97b3d5-f53f-4211-b7d3-0c012a8e05ff_2.png",
@@ -459,12 +540,13 @@ const FIXED_AVATARS = {
 };
 function getAvatarUrl(rank, sheetUrl){ return rank<=20 ? (FIXED_AVATARS[rank]||sheetUrl||"") : (FIXED_AVATARS[20]||sheetUrl||""); }
 
-/* ===== DOM helpers ===== */
+/* ===== Elements ===== */
 const $ = s=>document.querySelector(s);
 const rowsEl = $('#rows'), podiumEl = $('#podium'), boardDateEl = $('#boardDate');
 const datePicker = $('#datePicker'), searchInput = $('#searchInput'), searchBtn = $('#searchBtn'), searchResult = $('#searchResult');
 const langSelect = $('#langSelect');
 
+/* ===== Helpers ===== */
 const fmtMoney = n => `${CURRENCY.symbol} ${Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}`;
 const pad2 = n => String(n).padStart(2,'0');
 const toTZ = (d=new Date(), tz=CURRENT_TZ, opts={}) => new Intl.DateTimeFormat('en-CA', { timeZone: tz, ...opts });
@@ -475,7 +557,7 @@ function maskMiddle4(name){ const s=String(name||''); if(s.length<=4){ if(s.leng
 function bust(url){ return url ? url + (url.includes('?')?'&':'?') + 'v=' + Date.now() : ''; }
 function avatarStyle(url){ return url ? `style="background-image:url('${bust(url)}');"` : ""; }
 
-/* ===== CSV ===== */
+/* ===== CSV parser ===== */
 function parseCSV(text){
   const rows=[]; let cur=[], curVal='', inQ=false;
   for(let i=0;i<text.length;i++){
@@ -489,9 +571,10 @@ function parseCSV(text){
   return rows;
 }
 
+/* ===== Data load + index ===== */
 let cache = [];
 let MIN_YMD = null, MAX_YMD = null;
-const dayIndex = new Map();
+const dayIndex = new Map(); // ymd -> Map(nKey -> bestRow)
 
 async function loadCSV(){
   const url = DATA_CSV_URL + (DATA_CSV_URL.includes('?')?'&':'?') + 't=' + Date.now();
@@ -502,7 +585,13 @@ async function loadCSV(){
   const table = parseCSV(text).filter(r=>r.length);
   if(table.length<2) return;
   const header = table[0].map(h=>h.trim().toLowerCase());
-  const idx = { date: header.indexOf('date'), rank: header.indexOf('rank'), name: header.indexOf('username'), amount: header.indexOf('turnover'), avatar: header.indexOf('avatar') };
+  const idx = {
+    date: header.indexOf('date'),
+    rank: header.indexOf('rank'),
+    name: header.indexOf('username'),
+    amount: header.indexOf('turnover'),
+    avatar: header.indexOf('avatar'),
+  };
   const out = [];
   for(let i=1;i<table.length;i++){
     const r = table[i];
@@ -518,7 +607,7 @@ async function loadCSV(){
   }
   cache = out;
 
-  // index per day
+  // Build per-day index
   dayIndex.clear();
   const dates = Array.from(new Set(cache.map(r=>r.date))).sort();
   for(const d of dates){
@@ -530,7 +619,9 @@ async function loadCSV(){
       const r = sorted[i];
       const compRank = hasRank ? (r.rank||i+1) : (i+1);
       const prev = map.get(r.nKey);
-      if(!prev || compRank < prev.finalRank){ map.set(r.nKey, {...r, finalRank: compRank}); }
+      if(!prev || compRank < prev.finalRank){
+        map.set(r.nKey, {...r, finalRank: compRank});
+      }
     }
     dayIndex.set(d, map);
   }
@@ -539,44 +630,6 @@ async function loadCSV(){
   if(datePicker){ datePicker.min = MIN_YMD; datePicker.max = MAX_YMD; }
 }
 
-/* ===== I18N engine (via data-i18n attributes) ===== */
-function setShareLinks(textMsg){
-  const shareUrl = location.href.split('#')[0];
-  $('#shareTg').href = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(textMsg)}`;
-  $('#shareWa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(textMsg + ' 👉 ' + shareUrl)}`;
-}
-
-function applyLang(code){
-  const L = I18N[code] || I18N.pt;
-  document.documentElement.lang = L.htmlLang || code;
-
-  // textContent targets
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const key = el.getAttribute('data-i18n');
-    if (L[key] !== undefined) el.textContent = L[key];
-  });
-
-  // placeholders
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
-    const key = el.getAttribute('data-i18n-placeholder');
-    if (L[key] !== undefined) el.placeholder = L[key];
-  });
-
-  // titles
-  document.querySelectorAll('[data-i18n-title]').forEach(el=>{
-    const key = el.getAttribute('data-i18n-title');
-    if (L[key] !== undefined) el.title = L[key];
-  });
-
-  // dynamic text (support line reuses two separate nodes already)
-  setShareLinks(L.shareText);
-
-  // FAQ title already handled by data-i18n; inject the localized body:
-  const fb = document.getElementById('faqBody');
-  if (fb && typeof L.faqHTML === 'string' && L.faqHTML) fb.innerHTML = L.faqHTML;
-}
-
-/* ===== Render board ===== */
 function getSortedDay(ymd){
   const rows = cache.filter(r=>r.date===ymd);
   if(!rows.length) return [];
@@ -584,6 +637,40 @@ function getSortedDay(ymd){
   return rows.slice().sort((a,b)=> hasRank ? (a.rank||999999)-(b.rank||999999) : (b.amount||0)-(a.amount||0));
 }
 
+/* ===== I18N ===== */
+function setShareLinks(textMsg){
+  const shareUrl = location.href.split('#')[0];
+  $('#shareTg').href = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(textMsg)}`;
+  $('#shareWa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(textMsg + ' 👉 ' + shareUrl)}`;
+}
+function applyLang(code){
+  const L = I18N[code] || I18N.pt;
+  document.documentElement.lang = L.htmlLang || code;
+
+  // static texts
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if (L[key] !== undefined) el.textContent = L[key];
+  });
+  // placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (L[key] !== undefined) el.placeholder = L[key];
+  });
+  // titles
+  document.querySelectorAll('[data-i18n-title]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-title');
+    if (L[key] !== undefined) el.title = L[key];
+  });
+
+  setShareLinks(L.shareText);
+
+  // FAQ body
+  const fb = document.getElementById('faqBody');
+  if (fb && typeof L.faqHTML === 'string' && L.faqHTML) fb.innerHTML = L.faqHTML;
+}
+
+/* ===== Render ===== */
 function renderDay(ymd){
   const L = I18N[currentLang] || I18N.pt;
   boardDateEl.textContent = ymd;
@@ -596,6 +683,7 @@ function renderDay(ymd){
     return;
   }
 
+  // Podium 1–3 (#1 center, #2 left, #3 right)
   const top3 = sorted.slice(0,3);
   [1,0,2].forEach((i)=>{
     const r = top3[i]; if(!r) return;
@@ -612,6 +700,7 @@ function renderDay(ymd){
     `);
   });
 
+  // List 4–20
   sorted.slice(3,20).forEach((r, idx)=>{
     const rankShown = r.rank>0 ? r.rank : (idx+4);
     const avatarUrlRow = getAvatarUrl(rankShown, r.avatar);
@@ -628,20 +717,17 @@ function renderDay(ymd){
   });
 }
 
-/* ===== Search with localized messages ===== */
+/* ===== Search ===== */
 function doSearch(){
   const L = I18N[currentLang] || I18N.pt;
   const q = (searchInput.value||'').trim();
   const qKey = normName(q); searchResult.textContent='';
   if(!qKey) return;
-
   const ymd = datePicker.value;
   const idx = dayIndex.get(ymd);
   if(!idx){ searchResult.textContent = L.searchNoData(ymd); return; }
-
   const row = idx.get(qKey);
   if(!row){ searchResult.textContent = L.searchNoMatch(q, ymd); return; }
-
   const finalRank = row.finalRank;
   if(finalRank <= 20){
     searchResult.textContent = L.searchTop(row.name, finalRank);
@@ -694,7 +780,7 @@ function doSearch(){
 let currentLang = localStorage.getItem(STORAGE_KEY) || 'pt'; // default = Portuguese
 
 (async function init(){
-  // seed EN FAQ from DOM before swaps
+  // Seed EN FAQ from DOM before swap
   const fb = document.getElementById('faqBody');
   if (fb) I18N.en.faqHTML = fb.innerHTML;
 
@@ -703,6 +789,7 @@ let currentLang = localStorage.getItem(STORAGE_KEY) || 'pt'; // default = Portug
 
   await loadCSV();
 
+  // default date = today (UTC-3) clamped to data range
   const today = (()=>{ const d = new Date(); return ymdInTZ(d); })();
   datePicker.value = (today < MIN_YMD) ? MIN_YMD : (today > MAX_YMD ? MAX_YMD : today);
   renderDay(datePicker.value);
@@ -723,6 +810,9 @@ let currentLang = localStorage.getItem(STORAGE_KEY) || 'pt'; // default = Portug
     applyLang(currentLang);
     renderDay(datePicker.value);
   });
+
+  // Share links init
+  setShareLinks((I18N[currentLang]||I18N.pt).shareText);
 })();
 </script>
 </body>
